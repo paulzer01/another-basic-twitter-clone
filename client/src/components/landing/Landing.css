@@ -1,0 +1,24 @@
+* {
+    text-align: center;
+}
+.landing {
+    position: relative;
+    margin-top: 35vh;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heading {
+    margin-bottom: 10px;
+}
+
+.button {
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
