@@ -4,7 +4,7 @@ import './Post.css';
 // components
 import CreateComment from './CreateComment';
 
-const Post = ({ post }) => {
+const Post = ({ post, updatePosts, generatePosts }) => {
 
     const [likeCount, setLikeCount] = useState(0);
     const [commentCount, setCommentCount] = useState(0);
@@ -112,6 +112,10 @@ const Post = ({ post }) => {
             } else {
                 await retweetPost();
             }
+
+            await updatePosts(post.post_id);
+            await generatePosts();
+
         } catch (err) {
             console.error(err.message);
         }

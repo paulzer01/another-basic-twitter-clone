@@ -9,6 +9,7 @@ import {
 // COMPONENTS
 import Landing from './components/landing/Landing';
 import Home from './components/dashboard/Home';
+import Profile from './components/dashboard/profile/Profile';
 
 //STYLING
 import './App.css';
@@ -53,6 +54,18 @@ function App() {
           <Route exact path='/home' render={props =>
             isAuthenticated
               ? <Home {...props} setAuth={setAuth} />
+              : <Redirect to='/' />
+          }
+          />
+          <Route exact path='/post' render={props =>
+            isAuthenticated
+              ? <Profile {...props} setAuth={setAuth} />
+              : <Redirect to='/' />
+          }
+          />
+          <Route exact path='/profile' render={props =>
+            isAuthenticated
+              ? <Profile {...props} setAuth={setAuth} />
               : <Redirect to='/' />
           }
           />

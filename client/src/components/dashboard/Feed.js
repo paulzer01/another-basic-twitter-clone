@@ -29,6 +29,31 @@ const Feed = ({ currentUser }) => {
         currentUser.user_image = "https://i.stack.imgur.com/34AD2.jpg";
     }
 
+    // adjust retweet counts
+    const updatePosts = (post_id) => {
+        allPosts.map(post => {
+            if (post.post_id === post_id)
+                post.post_id = post_id;
+        });
+    }
+
+    // generate posts
+    const generatePosts = () => {
+        return (
+            allPosts.length !== 0 &&
+                allPosts.map((post, i) => {
+                    return (<Post
+                        key={`${post.post_id} + ${i++}`}
+                        post={post}
+                        currentUser_image={post.user_image}
+                        updatePosts={updatePosts}
+                        generatePosts={generatePosts}
+                        />
+                    );
+                })
+        )
+    }
+
     useEffect(() => {
         getFeedPosts();
     }, []);
@@ -43,16 +68,19 @@ const Feed = ({ currentUser }) => {
                 getFeedPosts={getFeedPosts}
             />
 
-            {allPosts.length !== 0 &&
+            {generatePosts()}
+
+            {/* {allPosts.length !== 0 &&
                 allPosts.map((post, i) => {
                     return (<Post
                         key={`${post.post_id} + ${i++}`}
                         post={post}
                         currentUser_image={post.user_image}
+                        updatePosts={updatePosts}
                         />
                     );
                 })
-            }
+            } */}
         </div>
     );
 }
