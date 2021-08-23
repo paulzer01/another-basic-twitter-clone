@@ -1,0 +1,82 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-right: 200px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid rgb(40, 112, 172) 1px;
+    max-width: 1000px;
+}
+
+.post-container1 {
+    display: flex;
+}
+
+.activity-info {
+    text-align: left;
+    position: relative;
+    left: 150px;
+    margin-bottom: 10px;
+    margin-top: -10px;
+    color: rgb(80, 133, 177);
+}
+
+.profile-img-container img {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    margin-right: 50px;
+    margin-top: 5px;
+  }
+
+.user-info {
+    display: flex;
+    width: 100%;
+}
+
+.user-tag {
+    color: rgb(96, 165, 221);
+    float: left;
+}
+
+.user-name {
+    font-weight: bold;
+    float: left;
+}
+
+.post-body {
+    margin-top: 10px;
+    min-width: 500px;
+    max-width: 750px;
+}
+
+.post-body p { 
+    text-align: left;
+}
+
+.post-options {
+    display: flex;
+    height: 50px;
+    width: 700px;
+}
+
+.post-options span {
+    margin-right: 30%;
+    font-weight: bold;
+    color: rgb(96, 165, 221);
+}
+
+.post-options span button {
+    border: none;
+    font-weight: bold;
+    /* color: rgb(96, 165, 221); */
+    color: rgb(183, 222, 253);
+    background-color: rgb(24, 77, 121);
+    border-radius: 20px;
+}
+
+.post-options span button:hover {
+    background-color: rgb(26, 85, 134);
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import './CreatePost.css';
 
-const CreatePost = () => {
+const CreatePost = ({ currentUser_image, getFeedPosts }) => {
     const [postText, setPostText] = useState("");
 
     const onSubmitForm = async e => {
@@ -20,7 +21,7 @@ const CreatePost = () => {
 
             const parseResponse = await response.json();
             setPostText("");
-            console.log(parseResponse);
+            getFeedPosts();
 
         } catch (err) {
             console.error(err.message);
@@ -29,15 +30,17 @@ const CreatePost = () => {
 
     return (
         <div onSubmit={onSubmitForm} className='createPost'>
-            <h2>create post</h2>
-            <form>
-                <input
+            <div className="profile-container">
+                <img className="profile-image" src={currentUser_image} />
+            </div>
+            <form className="post-container">
+                <textarea
                     type='text'
                     placeholder='What do you want to toot?'
-                    onChange={e => {setPostText(e.target.value); console.log(postText)}}
-                    value={postText} 
+                    onChange={e => { setPostText(e.target.value); }}
+                    value={postText}
                 />
-                <button>Toot</button>
+                <button className="btn btn-primary create-post-button">Toot</button>
             </form>
         </div>
     );

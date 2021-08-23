@@ -1,4 +1,31 @@
 .feed {
     flex: 0.7;
-    background-color: black;
+    border-left: solid rgb(40, 112, 172) 1px;
+    height: 100vh;
+    min-width: fit-content;
+    overflow-y: scroll;
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.feed::-webkit-scrollbar {
+    display: none;
+  }
+
+  .feed-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgb(24, 77, 121);
+      margin-bottom: 30px;
+      border-bottom: solid rgb(40, 112, 172) 1px;
+      max-width: 100%;
+  }
+
+.feed-header h3 {
+    margin-left: 50px;
+    display: flex;
 }

@@ -21,7 +21,7 @@ function App() {
     try {
       const res = await fetch("http://localhost:5000/auth/verify", {
         method: "POST",
-        headers: { jwt_token: localStorage.token }
+        headers: { token: localStorage.token }
       });
 
       const parseRes = await res.json();

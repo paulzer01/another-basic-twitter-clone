@@ -4,11 +4,12 @@ const Register = ({ setAuth }) => {
 
     const [inputs, setInputs] = useState({
         name: "",
+        username: "",
         email: "",
         password: ""
     });
 
-    const { name, email, password } = inputs;
+    const { name, username, email, password } = inputs;
 
     const onChange = e =>
         setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -16,7 +17,11 @@ const Register = ({ setAuth }) => {
     const onSubmitForm = async e => {
         e.preventDefault();
         try {
-            const body = { name, email, password };
+            const body = { name, username, email, password };
+            // convert username and email to lowercase
+            body.email = body.email.toLowerCase();
+            body.username = body.username.toLowerCase();
+
             const response = await fetch(
                 "http://localhost:5000/auth/register",
                 {
@@ -44,12 +49,12 @@ const Register = ({ setAuth }) => {
     return (
         <Fragment>
             {/* <!-- Button trigger modal --> */}
-            <button type="button" class="btn btn-primary button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" className="btn btn-primary button" data-bs-toggle="modal" data-bs-target="#register">
                 Sign up
             </button>
 
             {/* <!-- Modal --> */}
-            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="register" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -64,6 +69,14 @@ const Register = ({ setAuth }) => {
                                     placeholder="Name"
                                     name="name"
                                     value={name}
+                                    onChange={onChange}
+                                />
+                                <input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="Username"
+                                    name="username"
+                                    value={username}
                                     onChange={onChange}
                                 />
                                 <input

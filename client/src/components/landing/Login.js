@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 
+// Login using email or username
 const Login = ({ setAuth }) => {
 
     const [inputs, setInputs] = useState({
@@ -7,6 +8,7 @@ const Login = ({ setAuth }) => {
         password: ""
     });
 
+    // email const can be either an email address or username
     const { email, password } = inputs;
 
     const onChange = e =>
@@ -16,7 +18,9 @@ const Login = ({ setAuth }) => {
         e.preventDefault();
         try {
             const body = { email, password };
-            console.log(body);
+            // convert email to lowercase
+            body.email = body.email.toLowerCase();
+
             const response = await fetch(
                 "http://localhost:5000/auth/login",
                 {
@@ -44,24 +48,24 @@ const Login = ({ setAuth }) => {
     return (
         <Fragment>
             {/* <!-- Button trigger modal --> */}
-            <button type="button" className="btn btn-primary button" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+            <button type="button" className="btn btn-primary button" data-bs-toggle="modal" data-bs-target="#login">
                 Log in
             </button>
 
             {/* <!-- Modal --> */}
-            <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="login" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">Log in to your account</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <form onSubmit={onSubmitForm} className="signup-form">
                                 <input
                                     className="form-control"
-                                    type="email"
-                                    placeholder="Email"
+                                    type="text"
+                                    placeholder="Email or Username"
                                     name="email"
                                     value={email}
                                     onChange={onChange}
@@ -81,7 +85,7 @@ const Login = ({ setAuth }) => {
                 </div>
             </div>
         </Fragment>
-    )
+    );
 }
 
 export default Login;
