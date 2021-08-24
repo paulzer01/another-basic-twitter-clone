@@ -115,6 +115,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
 
             await updatePosts(post.post_id);
             await generatePosts();
+            getRetweetCount();
 
         } catch (err) {
             console.error(err.message);

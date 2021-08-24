@@ -10,6 +10,7 @@ import {
 import Landing from './components/landing/Landing';
 import Home from './components/dashboard/Home';
 import Profile from './components/dashboard/profile/Profile';
+import StandalonePost from './components/dashboard/standalone-post/StandalonePost';
 
 //STYLING
 import './App.css';
@@ -57,18 +58,15 @@ function App() {
               : <Redirect to='/' />
           }
           />
-          <Route exact path='/post' render={props =>
-            isAuthenticated
-              ? <Profile {...props} setAuth={setAuth} />
-              : <Redirect to='/' />
-          }
-          />
-          <Route exact path='/profile' render={props =>
-            isAuthenticated
-              ? <Profile {...props} setAuth={setAuth} />
-              : <Redirect to='/' />
-          }
-          />
+
+          <Route path='/post'>
+            <StandalonePost setAuth={setAuth} />
+          </Route>
+
+          <Route path='/:profile'>
+            <Profile setAuth={setAuth} />
+          </Route>
+
         </Switch>
       </Router>
     </div>

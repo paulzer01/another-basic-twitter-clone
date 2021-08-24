@@ -1,9 +1,11 @@
 import React from 'react';
 
+import Sidebar from '../Sidebar';
+
 const Profile = ({ setAuth }) => {
     return (
         <div>
-            <p>Profile</p>
+            <Sidebar />
         </div>
     )
 }
