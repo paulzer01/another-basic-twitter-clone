@@ -36,6 +36,10 @@
     width: 100%;
 }
 
+.user-info .link {
+    color: white;
+}
+
 .user-tag {
     color: rgb(96, 165, 221);
     float: left;

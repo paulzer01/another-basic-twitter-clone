@@ -40,26 +40,39 @@ router.delete("/post/:id", authorise, async (req, res) => {
     }
 });
 
-// get posts
+// get user name from retweet user_id
+router.get('/getUsername/:user_id', async (req, res) => {
+    try {
+        const { user_id } = req.params;
+        const username = await pool.query(
+            "SELECT user_name FROM users WHERE user_id = $1", [user_id]
+        );
+        res.json(username);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 router.get('/feedPosts', authorise, async (req, res) => {
     try {
         const posts = await pool.query(
             "(SELECT u.user_id, r.user_id AS retweet_user_id, u.user_name, u.username, u.user_image, p.post_id, p.post_text, r.retweet_time AS post_time FROM posts AS p INNER JOIN retweets AS r ON p.post_id = r.post_id INNER JOIN users AS u ON u.user_id = p.user_id WHERE p.comment_reference_id IS NULL AND r.user_id != $1) UNION (SELECT u.user_id, NULL, u.user_name, u.username, u.user_image, p.post_id, p.post_text, p.post_time FROM posts AS p INNER JOIN users AS u ON u.user_id = p.user_id WHERE p.comment_reference_id IS NULL) ORDER BY post_time DESC",
             [req.user.id]
         );
-res.json(posts.rows);
+        res.json(posts.rows);
     } catch (err) {
-    console.error(err.message);
-}
+        console.error(err.message);
+    }
 });
 
 
-// get your own posts
-router.get('/ownPosts', authorise, async (req, res) => {
+// get a profile's posts and retweets
+router.get('/profile/:username/posts', async (req, res) => {
     try {
+        const { username } = req.params;
         const posts = await pool.query(
-            "SELECT u.user_id, u.user_name, u.username, u.user_image, p.post_id, p.post_text, p.post_time FROM users AS u INNER JOIN posts AS p ON u.user_id = p.user_id WHERE (u.user_id = $1) AND (p.comment_reference_id = NULL) ORDER BY p.post_time DESC",
-            [req.user.id]
+            "(SELECT u.user_id, r.user_id AS retweet_user_id, u.user_name, u.username, u.user_image, p.post_id, p.post_text, r.retweet_time AS post_time FROM posts AS p INNER JOIN retweets AS r ON p.post_id = r.post_id INNER JOIN users AS u ON u.user_id = p.user_id WHERE p.comment_reference_id IS NULL AND r.user_id = (SELECT user_id FROM users WHERE username = $1)) UNION (SELECT u.user_id, NULL, u.user_name, u.username, u.user_image, p.post_id, p.post_text, p.post_time FROM posts AS p INNER JOIN users AS u ON u.user_id = p.user_id WHERE p.comment_reference_id IS NULL AND u.username = $1) ORDER BY post_time DESC",
+            [username]
         );
         res.json(posts);
     } catch (err) {
@@ -67,7 +80,9 @@ router.get('/ownPosts', authorise, async (req, res) => {
     }
 });
 
-//
+// get a profile's liked posts
+
+// get a profiles posts, retweets and replies
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////* COMMENTS */
 // make a comment on a post
@@ -86,7 +101,7 @@ router.post('/post/:post_id/comment', authorise, async (req, res) => {
 });
 
 // get count of comments on a post
-router.get('/post/:post_id/commentCount', authorise, async (req, res) => {
+router.get('/post/:post_id/commentCount', async (req, res) => {
     try {
         const { post_id } = req.params;
         const commentCount = await pool.query(
@@ -129,7 +144,7 @@ router.get('/post/:post_id/like', authorise, async (req, res) => {
 });
 
 // get number of likes on a post
-router.get('/post/:post_id/likeCount', authorise, async (req, res) => {
+router.get('/post/:post_id/likeCount', async (req, res) => {
     try {
         const { post_id } = req.params;
         const likeCount = await pool.query(
@@ -236,7 +251,7 @@ router.delete("/post/:post_id/retweet", authorise, async (req, res) => {
 });
 
 // get number of retweets on a post
-router.get('/post/:post_id/retweetCount', authorise, async (req, res) => {
+router.get('/post/:post_id/retweetCount', async (req, res) => {
     try {
         const { post_id } = req.params;
         const retweetCount = await pool.query(
@@ -265,12 +280,12 @@ router.get('/post/:post_id/likes/profiles', authorise, async (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////* FOLLOWS */
 // follow a user
-router.post('/profile/:profile_id/follow', authorise, async (req, res) => {
+router.post('/profile/:username/follow', authorise, async (req, res) => {
     try {
-        const { profile_id } = req.params;
+        const { username } = req.params;
         const newFollow = await pool.query(
-            "INSERT INTO followers (follower_id, user_id) VALUES ($1, $2) RETURNING *",
-            [req.user.id, profile_id]
+            "INSERT INTO followers (follower_id, user_id) VALUES ($1, (SELECT user_id FROM users WHERE username = $2)) RETURNING *",
+            [req.user.id, username]
         );
         res.json("User followed.");
     } catch (err) {
@@ -279,12 +294,12 @@ router.post('/profile/:profile_id/follow', authorise, async (req, res) => {
 });
 
 // unfollow a user
-router.delete("/profile/:profile_id/unfollow", authorise, async (req, res) => {
+router.delete("/profile/:username/unfollow", authorise, async (req, res) => {
     try {
-        const { profile_id } = req.params;
+        const { username } = req.params;
         const unfollow = await pool.query(
-            "DELETE FROM followers WHERE follower_id = $1 AND user_id = $2 RETURNING *",
-            [req.user.id, profile_id]
+            "DELETE FROM followers WHERE follower_id = $1 AND user_id = (SELECT user_id FROM users WHERE username = $2) RETURNING *",
+            [req.user.id, username]
         );
 
         if (unfollow.rows.length === 0) {
@@ -298,57 +313,42 @@ router.delete("/profile/:profile_id/unfollow", authorise, async (req, res) => {
     }
 });
 
-// get follower count
-router.get("/profile/:profile_id/followerCount", authorise, async (req, res) => {
+// get a specific follow
+router.get("/profile/:username/follow", authorise, async (req, res) => {
     try {
-        const { profile_id } = req.params;
-        const followerCount = await pool.query(
-            "SELECT COUNT(follower_id) FROM followers WHERE user_id = $1",
-            [profile_id]
+        const { username } = req.params;
+        const follow = await pool.query(
+            "SELECT * FROM followers WHERE user_id = (SELECT user_id FROM users WHERE username = $1) AND follower_id = $2", [username, req.user.id]
         );
-        res.json(followerCount);
+        res.json(follow);
     } catch (err) {
         console.error(err.message);
     }
-});
+})
 
 // get follower profiles
-router.get("profile/:profile_id/followerProfiles", authorise, async (req, res) => {
+router.get("/profile/:username/followerProfiles", async (req, res) => {
     try {
-        const { profile_id } = req.params;
-        const profiles = await pool.query(
-            "SELECT u.user_id, u.username, u.user_name, u.user_image FROM users AS u INNER JOIN followers AS f ON u.user_id = f.follower_id WHERE u.user_id = $1",
-            [profile_id]
+        const { username } = req.params;
+        const followerProfiles = await pool.query(
+            "SELECT u.user_id, u.username, u.user_name, u.user_image FROM users AS u INNER JOIN followers AS f ON u.user_id = f.follower_id WHERE f.user_id = (SELECT user_id FROM users WHERE username = $1)",
+            [username]
         );
-        res.json(profiles);
-    } catch (err) {
-        console.error(err.message);
-    }
-});
-
-// get following count
-router.get("/profile/:profile_id/followingCount", authorise, async (req, res) => {
-    try {
-        const { profile_id } = req.params;
-        const followingCount = await pool.query(
-            "SELECT COUNT(follower_id) FROM followers WHERE follower_id = $1",
-            [profile_id]
-        );
-        res.json(followingCount);
+        res.json(followerProfiles);
     } catch (err) {
         console.error(err.message);
     }
 });
 
 // get following profiles
-router.get("profile/:profile_id/followingProfiles", authorise, async (req, res) => {
+router.get("/profile/:username/followingProfiles", async (req, res) => {
     try {
-        const { profile_id } = req.params;
-        const profiles = await pool.query(
-            "SELECT u.user_id, u.username, u.user_name, u.user_image FROM users AS u INNER JOIN followers AS f ON u.user_id = f.follower_id WHERE f.follower_id = $1",
-            [profile_id]
+        const { username } = req.params;
+        const followingProfiles = await pool.query(
+            "SELECT u.user_id, u.username, u.user_name, u.user_image FROM users AS u INNER JOIN followers AS f ON u.user_id = f.user_id WHERE f.follower_id = (SELECT user_id FROM users WHERE username = $1)",
+            [username]
         );
-        res.json(profiles);
+        res.json(followingProfiles);
     } catch (err) {
         console.error(err.message);
     }
@@ -356,13 +356,13 @@ router.get("profile/:profile_id/followingProfiles", authorise, async (req, res) 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////* GETTING USER PROFILE */
 
-// get a user's full name, username, date joined and profile image
-router.get("/profile/:profile_id", authorise, async (req, res) => {
+// get a user's full name, username, date joined, description and profile image
+router.get("/profile/:username", async (req, res) => {
     try {
-        const { profile_id } = req.params;
+        const { username } = req.params;
         const profileInfo = await pool.query(
-            "SELECT user_name, username, profile_image, date_joined FROM users WHERE user_id = $1",
-            [profile_id]
+            "SELECT user_name, username, user_image, date_joined, user_description FROM users WHERE username = $1",
+            [username]
         );
         return res.json(profileInfo.rows);
     } catch (err) {

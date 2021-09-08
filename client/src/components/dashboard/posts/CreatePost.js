@@ -19,7 +19,7 @@ const CreatePost = ({ currentUser_image, getFeedPosts }) => {
                 body: JSON.stringify(body)
             });
 
-            const parseResponse = await response.json();
+            await response.json();
             setPostText("");
             getFeedPosts();
 
@@ -31,7 +31,7 @@ const CreatePost = ({ currentUser_image, getFeedPosts }) => {
     return (
         <div onSubmit={onSubmitForm} className='createPost'>
             <div className="profile-container">
-                <img className="profile-image" src={currentUser_image} />
+                <img className="profile-image" src={currentUser_image} alt="alt" />
             </div>
             <form className="post-container">
                 <textarea

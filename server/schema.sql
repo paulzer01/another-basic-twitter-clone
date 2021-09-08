@@ -93,4 +93,11 @@ ORDER BY post_time DESC;
 SELECT u.user_id, u.user_name, u.username, u.user_image, p.post_id, p.post_text, p.post_time 
 FROM users AS u INNER JOIN posts AS p ON u.user_id = p.user_id WHERE (p.comment_reference_id IS NULL) ORDER BY p.post_time DESC
 
+-- get all follower profiles
+SELECT users.username
+FROM users
+INNER JOIN followers
+ON users.user_id = followers.follower_id
+WHERE followers.user_id = (SELECT user_id FROM users WHERE username = 'madara');
+
 

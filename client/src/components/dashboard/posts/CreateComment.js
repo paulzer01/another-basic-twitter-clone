@@ -13,7 +13,7 @@ const CreateComment = ({ post, commentCount, getCommentCount }) => {
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("token", localStorage.token);
 
-        const response = await fetch("http://localhost:5000/dashboard/post/" + post.post_id + "/comment", {
+        await fetch("http://localhost:5000/dashboard/post/" + post.post_id + "/comment", {
             method: "POST",
             headers: myHeaders,
             body: JSON.stringify(body)
@@ -40,7 +40,7 @@ const CreateComment = ({ post, commentCount, getCommentCount }) => {
                         <div className="modal-body">
                             <div onSubmit={onSubmitForm} className='createPost'>
                                 <div className="profile-container">
-                                    <img className="profile-image" src={post.user_image} />
+                                    <img className="profile-image" src={post.user_image} alt="alt" />
                                 </div>
                                 <form className="post-container">
                                     <textarea

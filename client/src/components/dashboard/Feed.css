@@ -1,6 +1,7 @@
 .feed {
     flex: 0.8;
     border-left: solid rgb(40, 112, 172) 1px;
+    border-left: solid rgb(40, 112, 172) 1px;
     height: 100vh;
     min-width: fit-content;
     overflow-y: scroll;

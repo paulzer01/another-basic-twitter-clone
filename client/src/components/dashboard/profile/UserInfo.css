@@ -9,3 +9,49 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
+
+.user-info-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.follow-row {
+    display: flex;
+}
+
+.follow-row .name {
+    flex: 0.5
+}
+
+.follow-row button {
+    border-radius: 20px;
+    background-color: black;
+    border: 1px solid rgb(80, 133, 177);
+    color: rgb(80, 133, 177);
+    width: 100px;
+    text-align: center;
+}
+
+.profile-img {
+    width: 200px;
+    border-radius: 50%;
+    margin: 20px 0 0 50px;
+    border:rgb(40, 112, 172) solid 5px;
+}
+
+.user-info-container-2 {
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.user-info-container-2 *{
+    text-align: left;
+}
+
+.user-join-date, .user-username, .user-followers {
+    color: rgb(80, 133, 177);
+}
+
+.user-not-exist {
+    margin: 30% 0;
+}
