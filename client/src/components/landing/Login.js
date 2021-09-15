@@ -22,7 +22,7 @@ const Login = ({ setAuth }) => {
             body.email = body.email.toLowerCase();
 
             const response = await fetch(
-                "http://" + window.location.host + ":5000/auth/login",
+                "/auth/login",
                 {
                     method: "POST",
                     headers: {

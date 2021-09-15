@@ -12,7 +12,7 @@ const UserInfo = ({ currentUser, profile }) => {
 
     const getPostsRetweets = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/profile/" + profile.username + "/posts", {
+            const response = await fetch("/dashboard/profile/" + profile.username + "/posts", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -32,7 +32,7 @@ const UserInfo = ({ currentUser, profile }) => {
 
     const getFollowerProfiles = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/profile/" + profile.username + "/followerProfiles", {
+            const response = await fetch("/dashboard/profile/" + profile.username + "/followerProfiles", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -45,7 +45,7 @@ const UserInfo = ({ currentUser, profile }) => {
 
     const getFollowingProfiles = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/profile/" + profile.username + "/followingProfiles", {
+            const response = await fetch("/dashboard/profile/" + profile.username + "/followingProfiles", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -59,7 +59,7 @@ const UserInfo = ({ currentUser, profile }) => {
 
     const checkIfFollowed = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/profile/" + profile.username + "/follow", {
+            const response = await fetch("/dashboard/profile/" + profile.username + "/follow", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -89,7 +89,7 @@ const UserInfo = ({ currentUser, profile }) => {
 
     const followUser = async () => {
         try {
-            await fetch("http://" + window.location.host + ":5000/dashboard/profile/" + profile.username + "/follow", {
+            await fetch("/dashboard/profile/" + profile.username + "/follow", {
                 method: "POST",
                 headers: { token: localStorage.token }
             });
@@ -100,7 +100,7 @@ const UserInfo = ({ currentUser, profile }) => {
 
     const unfollowUser = async () => {
         try {
-            await fetch("http://" + window.location.host + ":5000/dashboard/profile/" + profile.username + "/unfollow", {
+            await fetch("/dashboard/profile/" + profile.username + "/unfollow", {
                 method: "DELETE",
                 headers: { token: localStorage.token }
             });

@@ -17,7 +17,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // get number of likes on the post
     const getLikeCount = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/post/" + post.post_id + "/likeCount", {
+            const response = await fetch("/dashboard/post/" + post.post_id + "/likeCount", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -31,7 +31,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // get number of comments on the post
     const getCommentCount = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/post/" + post.post_id + "/commentCount", {
+            const response = await fetch("/dashboard/post/" + post.post_id + "/commentCount", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -45,7 +45,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // get number of retweets on the post
     const getRetweetCount = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/post/" + post.post_id + "/retweetCount", {
+            const response = await fetch("/dashboard/post/" + post.post_id + "/retweetCount", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -59,7 +59,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // get retweeter's user name
     const getRetweetUserName = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/getUsername/" + post.retweet_user_id, {
+            const response = await fetch("/dashboard/getUsername/" + post.retweet_user_id, {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -73,7 +73,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // check if the comment has been liked
     const checkIfPostLiked = async () => {
         try {
-            const liked = await fetch("http://" + window.location.host + ":5000/dashboard/post/" + post.post_id + "/like", {
+            const liked = await fetch("/dashboard/post/" + post.post_id + "/like", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -95,7 +95,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // like the comment
     const likePost = async () => {
         try {
-            await fetch("http://" + window.location.host + ":5000/dashboard/post/" + post.post_id + "/like", {
+            await fetch("/dashboard/post/" + post.post_id + "/like", {
                 method: "POST",
                 headers: { token: localStorage.token }
             });
@@ -107,7 +107,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // unlike the comment
     const unlikePost = async () => {
         try {
-            await fetch("http://" + window.location.host + ":5000/dashboard/post/" + post.post_id + "/like", {
+            await fetch("/dashboard/post/" + post.post_id + "/like", {
                 method: "DELETE",
                 headers: { token: localStorage.token }
             });
@@ -119,7 +119,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // check if comment has been retweeted
     const checkIfPostRetweeted = async () => {
         try {
-            const retweet = await fetch("http://" + window.location.host + ":5000/dashboard/post/" + post.post_id + "/retweet", {
+            const retweet = await fetch("/dashboard/post/" + post.post_id + "/retweet", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -143,7 +143,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // retweet a post
     const retweetPost = async () => {
         try {
-            await fetch("http://" + window.location.host + ":5000/dashboard/post/" + post.post_id + "/retweet", {
+            await fetch("/dashboard/post/" + post.post_id + "/retweet", {
                 method: "POST",
                 headers: { token: localStorage.token }
             });
@@ -155,7 +155,7 @@ const Post = ({ post, updatePosts, generatePosts }) => {
     // un-retweet a post
     const unretweetPost = async () => {
         try {
-            await fetch("http://" + window.location.host + ":5000/dashboard/post/" + post.post_id + "/retweet", {
+            await fetch("/dashboard/post/" + post.post_id + "/retweet", {
                 method: "DELETE",
                 headers: { token: localStorage.token }
             });

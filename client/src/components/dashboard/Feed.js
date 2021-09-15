@@ -13,7 +13,7 @@ const Feed = ({ currentUser }) => {
 
     const getFeedPosts = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/feedPosts", {
+            const response = await fetch("/dashboard/feedPosts", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });

@@ -12,7 +12,7 @@ const Profile = ({ setAuth, getCurrentUser, currentUser }) => {
 
     const getProfile = async () => {
         try {
-            const response = await fetch("http://" + window.location.host + ":5000/dashboard/profile/" + username, {
+            const response = await fetch("/dashboard/profile/" + username, {
                 method: "GET",
                 headers: { token: localStorage.token }
             });

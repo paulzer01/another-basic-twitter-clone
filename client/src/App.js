@@ -24,7 +24,7 @@ function App() {
 
   const checkAuthenticated = async () => {
     try {
-      const res = await fetch("http://" + window.location.host + ":5000/auth/verify", {
+      const res = await fetch("/auth/verify", {
         method: "POST",
         headers: { token: localStorage.token }
       });
@@ -39,7 +39,7 @@ function App() {
 
   const getCurrentUser = async () => {
     try {
-      const response = await fetch("http://" + window.location.host + ":5000/dashboard/currentUser", {
+      const response = await fetch("/dashboard/currentUser", {
         method: "GET",
         headers: { token: localStorage.token }
       });
