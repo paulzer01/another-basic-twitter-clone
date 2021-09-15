@@ -13,7 +13,7 @@ const CreateComment = ({ post, commentCount, getCommentCount }) => {
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("token", localStorage.token);
 
-        await fetch("http://localhost:5000/dashboard/post/" + post.post_id + "/comment", {
+        await fetch("/dashboard/post/" + post.post_id + "/comment", {
             method: "POST",
             headers: myHeaders,
             body: JSON.stringify(body)
