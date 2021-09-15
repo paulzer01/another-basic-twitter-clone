@@ -13,7 +13,7 @@ const CreatePost = ({ currentUser_image, getFeedPosts }) => {
             myHeaders.append("token", localStorage.token);
 
             const body = { postText }
-            const response = await fetch("/dashboard/post", {
+            const response = await fetch("http://" + window.location.host + ":5000/dashboard/post", {
                 method: "POST",
                 headers: myHeaders,
                 body: JSON.stringify(body)

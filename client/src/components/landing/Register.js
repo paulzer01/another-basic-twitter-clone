@@ -23,7 +23,7 @@ const Register = ({ setAuth }) => {
             body.username = body.username.toLowerCase();
 
             const response = await fetch(
-                "/auth/register",
+                "http://" + window.location.host + ":5000/auth/register",
                 {
                     method: "POST",
                     headers: {
