@@ -5,7 +5,7 @@
 
 For example, we can use the CIDR block 10.11.0.0/16 where the first 2 octets (10.11) are the network prefix and the last 2 octets (0.0) are unsued and can be used to create private host addresses that can be assigned to different resources within the VPC. The /16 indicates that 2 octets or 16 bits are available to create private IP addresses.
 
-1.1.1. Choose 'No IPv6 CIDR block', and 'Default' for Tenancy.
+* Choose 'No IPv6 CIDR block', and 'Default' for Tenancy.
 
 1.2. Set up three new subnets.
 The first subnet will be public and does not need a preference for its Availability Zone.
