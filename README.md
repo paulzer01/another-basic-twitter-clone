@@ -18,6 +18,13 @@ npm run build
 ## 5. Deploying the app to AWS
 
 ## 6. Running the app with PM2
+```bash
+npm install pm2 -g
+```
+
+```bash
+pm2 start [FILE.js]
+```
 
 ## 7. Nginx (reverse proxy) production setup
 
