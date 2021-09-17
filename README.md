@@ -1,7 +1,9 @@
 # Deploying a PERN app to AWS
 
 ## 1. Setting up VPC and Subnets
-1.1. Set up a new VPC with a meaningful name and a CIDR block (e.g. 10.11.0.0/16 where the first 2 octets [10.11] are the network prefix and the last 2 octets [0.0] are unsued and can be used to create private host addresses that can be assigned to different resources within the VPC).
+1.1. Set up a new VPC with a meaningful name and a CIDR block. 
+
+For example, we can use the CIDR block 10.11.0.0/16 where the first 2 octets (10.11) are the network prefix and the last 2 octets (0.0) are unsued and can be used to create private host addresses that can be assigned to different resources within the VPC. The /16 indicates that 2 octets or 16 bits are available to create private IP addresses.
 
 Choose 'No IPv6 CIDR block', and 'Default' for Tenancy.
 
