@@ -3,6 +3,10 @@
 ## 1. Setting up VPC and Subnets
 
 ## 2. Setting up a production build
+```javascript
+console.log("hello");
+```
+
 ```bash
 npm run build
 ```
