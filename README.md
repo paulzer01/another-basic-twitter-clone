@@ -8,9 +8,12 @@
 * Choose 'No IPv6 CIDR block'
 * Set tenancy to 'Default'
 
-In our example, the CIDR block 10.11.0.0/16 where the first 2 octets (10.11) are the network prefix and the last 2 octets (0.0) are unsued and can be used to create private host addresses that can be assigned to different resources within the VPC. The /16 indicates that 2 octets or 16 bits are available to create private IP addresses.
+In the example above, 10.11.0.0/16 is a CIDR block where the first 2 octets (10.11) are the network prefix and the last 2 octets (0.0) are unsued and can be used to create private host addresses that can be assigned to different resources within the VPC. The /16 is a subnet mask which indicates that 2 octets or 16 bits worth of ip addresses are available to the subnet. Since each octet is 8 bytes (which is either a 0 or a 1), that means there are 2^8 = 256 combinations available per octet. This means that there are 256 * 256 = 65,536 IP addresses are usable by the new VPC. Since computers count from 0, each octet can be a number between 0 to 255.
 
-1.2. Set up three new subnets.
+**1.2. Create new subnets**
+
+* We need 1 public subnet for our web server and 2 private subnets
+
 The first subnet will be public and does not need a preference for its Availability Zone.
 The second and third subnets will be private and require Availability Zone preferences that differ from each other. This is because the PostgreSQL database that will be set up later requires two subnets
 
