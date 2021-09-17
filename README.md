@@ -1,2 +1,8 @@
 # pern-twitter-clone
--- to-do: add documentation for deploying to AWS EC2 with RDS database (PSQL)
+
+## Setting up VPC and Subnets
+
+## Setting up a production build
+
+## Launch a cloud computer with AWS EC2
+
