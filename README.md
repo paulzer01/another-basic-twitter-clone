@@ -1,6 +1,9 @@
 # Deploying a PERN app to AWS
 
 ## 1. Setting up VPC and Subnets
+1.1. Set up a new VPC with a meaningful name.
+1.2. 
+
 
 ## 2. Setting up the production build
 ```javascript
