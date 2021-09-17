@@ -1,9 +1,13 @@
 # Deploying a PERN app to AWS
 
 ## 1. Setting up VPC and Subnets
-1.1. Set up a new VPC with a meaningful name.
-1.2. okay 
+1.1. Set up a new VPC with a meaningful name and a CIDR block (e.g. 10.11.0.0/16 where the first 2 octets [10.11] are the network prefix and the last 2 octets [0.0] are unsued and can be used to create private host addresses that can be assigned to different resources within the VPC).
 
+Choose 'No IPv6 CIDR block', and 'Default' for Tenancy.
+
+1.2. Set up three new subnets.
+The first subnet will be public and does not need a preference for its Availability Zone.
+The second and third subnets will be private and require Availability Zone preferences that differ from each other. This is because the PostgreSQL database that will be set up later requires two subnets
 
 ## 2. Setting up the production build
 ```javascript
