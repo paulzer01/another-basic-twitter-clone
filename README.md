@@ -1,7 +1,7 @@
 # Deploying a PERN app to AWS
 
 ## 1. Setting up VPC and Subnets
-__1.1. Set up a new VPC__
+**1.1. Set up a new VPC**
 
 * Choose a meaningful name
 * Give a CIDR block e.g. 10.11.0.0/16
