@@ -23,6 +23,8 @@ Create the first subnet as the public subnet. It does not need a preference for 
 
 The second and third subnets will be private and require Availability Zone preferences that differ from each other. This is because the RDS PostgreSQL database that we will use later requires two subnets to be set up.
 
+Subnets are simply sub networks within a wider network, in this case, the VPC. To differentiate each subnet, they must have differing IPv4 addresses local to the VPC. We know that the last octets are available as the host address, so the subnet 1 can use 10.11.1.0/24, subnet 2 can use 10.11.2.0/24, and subnet 3 can use 10.11.3.0/24. Since there is one octet unsed by the subnets we just created (notice the .0/24), this means that within each subnet, 256 other local IP addresses can be used.
+
 Our web server and database will be able to communicate with each other through a route table.
 
 ## 2. Setting up the production build
