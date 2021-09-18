@@ -128,28 +128,31 @@ const response = await fetch(
 
 **2.2 Create the client-side build**
 
-Once the necessary code changes have been made on the client side, we can now package it into a build by running the following.
+Once the necessary code changes have been made on the client side, we can now package it into a production build by running the following. This will output a build of the client-side app in a directory called build.
 ```bash
 npm run build
 ```
+
+Move the build folder into the node/express server.
 
 **2.3 Change relevant server-side code so that the "index.html" in our new build is served**
 
 We now need to make changes in the server-side code so that our client side will be served up by the server.
 
-This is achieved by the following:
+This is achieved by setting a path to the build directory:
 ```javascript
-// this code will ensure that index.html is served up by the server for every route
 const path = require("path");
 
 app.use(express.static(path.join(__dirname, 'build')));
 
+// ensures that index.html is served up by the server for every route
 if (process.env.NODE_ENV === 'production') {
     app.get('*/', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
     });
 }
 ```
+The 
 
 We now omit the `http://localhost:5000/` part of the fetch address so that it becomes `await fetch("/auth/register", ... )`.
 
