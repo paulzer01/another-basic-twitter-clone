@@ -78,6 +78,26 @@ We do not add the internet gateway route to the private route table.
 
 For both route tables, edit the subnet associations by adding the public subnet to the public route table, and the remaining two private subnets to the private route table.
 
+-----
+
+**1.5 Create a Security Group for the web server**
+
+* Give the security group a meaningful name and short description
+* Connect it to your VPC
+* Set up inbound and outbound rules (instructions below)
+
+Security groups filter incoming and outgoing traffic. They are basically firewalls.
+
+The security group we will be creating is for our public subnet (the web server). Since this subnet is accessible via the internet, we need to define inbound rules to make it secure.
+
+| Type                | Port range          | Source              | IP version |
+| ------------------- |:-------------------:|:-------------------:| ----------:|
+| HTTP                | 80                  | 0.0.0.0/0           | IPv4       |
+| HTTP                | 80                  | ::/0                | IPv6       |
+| HTTPS               | 443                 | 0.0.0.0/0           | IPv4       |
+| HTTPS               | 443                 | ::/0                | IPv6       |
+| SSH                 | 22                  | YOUR IP ADDRESS     | IPv4       |
+
 ## 2. Setting up the production build
 ```javascript
 console.log("hello");
