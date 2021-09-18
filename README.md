@@ -404,7 +404,16 @@ sudo amazon-linux-extras install nginx1.12
 sudo nano /etc/nginx/nginx.conf               # opens nginx.conf with the nano text editor that comes with EC2
 ```
 * Once in the file, we want to firstly delete the exisiting root path `root /usr/share/nginx/html;` within the `server` directive.
-* Then add the following to the home `/` location route. This sets the react build as the root route, and then sets the index.html file as the main index, and finally on every subsequent request, serves the same index.html file. We configure it this way since React is a single page app that uses only one single html file, so in order to navigate within the React app, we have to server the same html file again and again.
+* If you have a domain name that you wish to use, edit `server_name` as such
+```
+server {
+	listen		80 default_server;
+	listen 		[::] 80 default_server;
+	server_name	your_domain_name.xyz	ec2_public_ipv4_address
+...
+```
+* If you do not wish for port 80 to be the default server, remove the `default_server` tag
+* Add the following to the home `/` location route within the `server` directive. This sets the react build as the root route, and then sets the index.html file as the main index, and finally on every subsequent request, serves the same index.html file. We configure it this way since React is a single page app that uses only one single html file, so in order to navigate within the React app, we have to server the same html file again and again.
 ```
 location / {
         root absolute_path_leading_to_your_build_directory/build;  # sets the build directory as the root
@@ -449,7 +458,7 @@ chmod +x /home/username
 chmod +x /home/username/siteroot
 ```
 -----
-You should now be able to copy the public IPv4 address of your EC2 instance and paste it into the address bar of your browser without the non-standard `:port` post-fix and be able to access your deployed web application. Congratulations! You've successfully deployed your web application on the AWS cloud.
+You should now be able to copy the public IPv4 address of your EC2 instance and paste it into the address bar of your browser without the non-standard `:port` post-fix and be able to access your deployed web application. Congratulations! You've successfully deployed your web application onto the AWS cloud.
 
 ## 8. Terminating AWS resources (to avoid costs)
 
