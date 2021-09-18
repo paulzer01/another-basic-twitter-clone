@@ -125,14 +125,14 @@ const response = await fetch(
                 }
             );
 ```
+We now omit the `http://localhost:5000/` part of the fetch address so that it becomes `await fetch("/auth/register", ... )`.
 
 **2.2 Create the client-side build**
 
-Once the necessary code changes have been made on the client side, we can now package it into a production build by running the following. This will output a build of the client-side app in a directory called build.
+Once the necessary code changes have been made on the client side, we can now package it into a production build by running the following. This will output a build of the React app in a directory called build.
 ```bash
 npm run build
 ```
-
 Move the build folder into the node/express server.
 
 **2.3 Change relevant server-side code so that the "index.html" in our new build is served**
@@ -152,9 +152,6 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 ```
-The 
-
-We now omit the `http://localhost:5000/` part of the fetch address so that it becomes `await fetch("/auth/register", ... )`.
 
 ## 3. Launch a cloud computer with AWS EC2
 
