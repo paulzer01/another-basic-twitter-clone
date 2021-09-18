@@ -16,7 +16,8 @@ Note that the /16 denotes the number of bytes that are in use as the network pre
 
 **1.2. Create new subnets**
 
-* We need 1 public subnet for our web server and 2 private subnets
+* 1 public subnet which will contain our web server
+* 2 private subnets which will contain our PSQL database
 
 The first subnet will be public and does not need a preference for its Availability Zone.
 The second and third subnets will be private and require Availability Zone preferences that differ from each other. This is because the PostgreSQL database that will be set up later requires two subnets
