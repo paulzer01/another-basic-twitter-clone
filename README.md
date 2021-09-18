@@ -371,9 +371,9 @@ sudo nano /etc/nginx/nginx.conf               # opens nginx.conf with the nano t
 * Then add the following to the home `/` location route. This sets the react build as the root route, and then sets the index.html file as the main index, and finally on every subsequent request, serves the same index.html file. We configure it this way since React is a single page app that uses only one single html file, so in order to navigate within the React app, we have to server the same html file again and again.
 ```
 location / {
-        root absolute_path_leading_to_your_build_directory/build;  # says that for every slash /route we go to the root react/build directory
-	index index.html;                                          # says we want index to be a html file 
-	try_file $uri /index.html;                                 # says to try index.html and for every subsequent route, go back to index.html
+        root absolute_path_leading_to_your_build_directory/build;  # sets the build directory as the root
+	index index.html;                                          # sets the index to be index.html 
+	try_file $uri /index.html;                                 # tries index.html and for every subsequent request, go back to index.html
 }
 ```
 
