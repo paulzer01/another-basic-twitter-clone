@@ -21,6 +21,8 @@ _Source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.htm
 
 The following steps require working from the AWS Management Console.
 
+-----
+
 **1.1. Create a new VPC**
 
 * Choose a meaningful name for the new VPC
@@ -31,6 +33,8 @@ The following steps require working from the AWS Management Console.
 In the example above, 10.11.0.0/16 is a CIDR block where the first 2 bytes [10.11] are the unchangeable network prefix and the last 2 bytes [0.0] are unsued and can be used to create private host addresses that can be assigned to different resources within the VPC. The /16 is a subnet mask which indicates that 2 bytes or 16 bits are available as ip addresses for the VPC. Since each byte is 8 bits (which is either a 0 or a 1, and which can also be called an octet), that means there are 2^8 = 256 combinations available per byte/octet. This means that there are 256 * 256 = 65,536 IP addresses are usable by the new VPC. Since computers count from 0, each octet can be a number between 0 to 255.
 
 Note that the /16 subnet mask denotes the number of bits that are in use as the network prefix. Since there are 4 octets per IPv4 address, this means there are 32 bits in total. Hence, the /16 - which is half of the 32 total bits - implies that 16 bits are in use as the network prefix, so the remaining 16 bits are available to the subnet to be used as local host addresses.
+
+-----
 
 **1.2. Create new subnets**
 
@@ -47,16 +51,18 @@ Our web server and database will be able to communicate with each other through 
 
 -----
 
-**1.3 Create an Internet Gateway
+**1.3 Create an Internet Gateway**
 
 * Give it a name tag that is meaningful
 * Under 'Actions', attach it to your VPC
 
 The internet gateway connects the VPC to the internet. It can receive requests from the internet to the VPC, or take requests from the VPC which are then sent into the internet. The internet gateway has its own public IP address which identifies the VPC network as a whole on the internet. The VPC network, (as alluded to in the above sections) can contain within itself thousands of IP addresses.
 
+-----
+
 **1.4 Create Route Tables**
 
-* 
+
 
 ## 2. Setting up the production build
 ```javascript
