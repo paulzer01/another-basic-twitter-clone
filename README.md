@@ -5,7 +5,7 @@ This is a guide to setup a PostgreSQL, Express, React, Node full stack web appli
 We will need to understand what the following are:
 * Virtual private cloud (VPC) — A virtual network dedicated to your AWS account that you can deploy AWS resources into and have all your resources contained in one virtual place.
 
-* Subnet — A range of IP addresses in your VPC.
+* Subnet — A range of IP addresses in your VPC. Subnetting in AWS is done with CIDR notation e.g. 10.11.4.0/24.
 
 * Route table — A set of rules, called routes, that are used to determine where network traffic is directed.
 
