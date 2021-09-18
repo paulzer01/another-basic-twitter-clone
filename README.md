@@ -201,11 +201,11 @@ ssh -i "PATH/YOUR_KEY_PAIR.pem" ec2-user@YOUR_EC2_INSTANCE_PUBLIC_IPV4
 ```
 * The following commands can be used in our newly connected virtual computer:
 ```bash
-cd /                      :::: goes to home directory
-ls                        :::: lists current files in current folder
-pwd                       :::: shows path of current directory
-sudo nano                 :::: opens up the ubuntu instance's code editor
-sudo rm {FILE/DIR}        :::: removes file or directory
+cd /                      # goes to home directory
+ls                        # lists current files in current folder
+pwd                       # shows path of current directory
+sudo nano                 # opens up the ubuntu instance's code editor
+sudo rm                   # removes file or directory
 ```
 
 ## 4. Setting up a PostgreSQL database on AWS
