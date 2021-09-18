@@ -96,7 +96,11 @@ The security group we will be creating is for our public subnet (the web server)
 | HTTP                | 80                  | ::/0                | IPv6       |
 | HTTPS               | 443                 | 0.0.0.0/0           | IPv4       |
 | HTTPS               | 443                 | ::/0                | IPv6       |
-| SSH                 | 22                  | YOUR IP ADDRESS     | IPv4       |
+| SSH                 | 22                  | Your IP address     | IPv4       |
+
+HTTP and HTTPS are set to their standard ports of 80 and 443 respectively with 0.0.0.0/0 and ::/0 allowing all IPv4 and IPv6 traffic.
+
+Lastly, we have SSH which will be how we connect to the EC2 instance from our local machine. We put the source IP as our own IP address so that no other machine but our own can access the instance.
 
 ## 2. Setting up the production build
 ```javascript
