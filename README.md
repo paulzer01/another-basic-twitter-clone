@@ -360,7 +360,11 @@ pm2 start app.js -i max   # runs the app with the maximum amount of computer cor
 sudo amazon-linux-extras install nginx1.12
 ```
 
-**7.2 Configure**
+**7.2 Edit the Nginx configuration**
+* Open up the nginx configuration file
+```bash
+sudo nano /etc/nginx/nginx.conf               # opens nginx.conf with the nano text editor that comes with EC2
+```
 
 ## 8. Terminating AWS resources (to avoid costs)
 
