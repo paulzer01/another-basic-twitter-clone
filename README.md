@@ -91,7 +91,7 @@ Security groups filter incoming and outgoing traffic. They are basically firewal
 The security group we will be creating is for our public subnet (the web server). Since this subnet is accessible via the internet, we need to define inbound rules to make it secure.
 
 | Type                | Port range          | Source              | IP version |
-| ------------------- |:-------------------:|:-------------------:| ----------:|
+| ------------------- |:-------------------:|:-------------------:|:----------:|
 | HTTP                | 80                  | 0.0.0.0/0           | IPv4       |
 | HTTP                | 80                  | ::/0                | IPv6       |
 | HTTPS               | 443                 | 0.0.0.0/0           | IPv4       |
@@ -226,11 +226,26 @@ The database subnet group spans to availability zones so that if a server fails 
 **4.2. Create a Security Group for the Database**
 * Go back to the VPC console and create a new security group
 * Give it a meaningful name
-* Edit the inbound rules as such:
+* Edit the inbound rules and add a 'Custom TCP Rule' with a Source set to 'Custom' like the below:
 
 | Type                | Port range          | Source              | IP version |
-| ------------------- |:-------------------:|:-------------------:| ----------:|
+| ------------------- |:-------------------:|:-------------------:|:----------:|
 | Custom TCP Rule     | 5432                | Public subnet CIDR  | IPv4       |
+
+We set Source to 'Custom' and use the CIDR block of the public subnet which contains the web server e.g. 10.11.1.0/24. This ensures that only traffic coming from this local IPv4 address can speak to our database.
+
+**4.3 Create a new PostgreSQL database**
+* Choose 'Create Database' using 'PostgreSQL' (use the free tier to avoid costs)
+* Name your DB instance identifier
+* Pick your Master username (and set a password if you want)
+* Pick a DB instance class (pick the lowest performance one if you only want to test out how things work to reduce costs)
+* Choose your VPC
+* Select the newly created Database Subnet Group
+* Set Public Accessibility to 'No' (we don't want our database to be accessible over the internet)
+* Leave the Availablity Zone as 'No preference'
+* Choose your newly created Database Security Group
+* Have your database name be the same as the Database instance identifier (for convenience)
+* For the purposes of this exercise, we can leave everything else as default
 
 ## 5. Deploying the app to AWS
 
