@@ -373,7 +373,7 @@ sudo nano /etc/nginx/nginx.conf               # opens nginx.conf with the nano t
 location / {
         root absolute_path_leading_to_your_build_directory/build;  # sets the build directory as the root
 	index index.html;                                          # sets the index to be index.html 
-	try_file $uri /index.html;                                 # tries index.html first and for every subsequent request
+	try_file $uri /index.html;                                 # serves index.html first and for every subsequent request
 }
 ```
 
