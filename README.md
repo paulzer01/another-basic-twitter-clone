@@ -161,6 +161,8 @@ path.resolve('/a', '/b') // Outputs '/b'
 ```
 `path.resolve` will always result in an absolute URL, and will use the current working directory as a base to resolve this path. But as `__dirname` is an environment variable that tells you the absolute path of the directory containing the currently executing file, in this case it doesn't matter whether we use `join` or `resolve`.
 
+-----
+
 Once all the necessary changes have been made, the project is now ready to be deployed to a GitHub repository.
 
 ## 3. Launch a cloud computer with AWS EC2
