@@ -38,6 +38,7 @@ Note that the /16 subnet mask denotes the number of bits that are in use as the 
 
 **1.2. Create new subnets**
 
+* Create 3 subnets
 * 1 public subnet which will contain our web server and be accessible over the internet
 * 2 private subnets which will contain our PSQL database and will not be accessible over the internet
 
@@ -58,11 +59,11 @@ Our web server and database will be able to communicate with each other through 
 
 The internet gateway connects the VPC to the internet. It can receive requests from the internet to the VPC, or take requests from the VPC which are then sent into the internet. The internet gateway has its own public IP address which identifies the VPC network as a whole on the internet. The VPC network, (as alluded to in the above sections) can contain within itself thousands of IP addresses.
 
----
+-----
 
 **1.4 Create Route Tables**
 
-
+* Create
 
 ## 2. Setting up the production build
 ```javascript
