@@ -1,4 +1,4 @@
-# Deploying a PERN app to an AWS
+# Deploying a PERN app to AWS EC2
 ## Introduction
 This is a guide to setup a PostgreSQL, Express, React, Node full stack web application to an AWS EC2 instance running an Amazon Linux AMI 2. The setup will use PM2 as a cluster manager and NGINX as a reverse proxy. We will use RDS to deply the PSQL database.
 
