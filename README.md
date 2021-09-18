@@ -18,8 +18,11 @@ We will need to understand what the following are:
 _Source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html_
 
 ## 1. Setting up the VPC and Subnets
-**1.1. Create a new VPC**
 
+This step requires working from the AWS Management Console.
+
+**1.1. Create a new VPC**
+* 
 * Choose a meaningful name for the new VPC
 * Give a CIDR block e.g. 10.11.0.0/16
 * Choose 'No IPv6 CIDR block'
