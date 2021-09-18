@@ -299,7 +299,16 @@ nvm install latest_node_LTS
 ```
 -----
 
-**5.3 Try running your app**
+**5.3 Edit your Public Security Group**
+* Add two 'Custom TCP Rule' with the 'Port range' set to the port that your app is running on.
+
+For example:
+| Type                | Port range          | Source              | IP version |
+| ------------------- |:-------------------:|:-------------------:|:----------:|
+| Custom TCP Rule     | 5000                | 0.0.0.0/0           | IPv4       |
+| Custom TCP Rule     | 5000                | ::/0                | IPv6       |
+
+**5.4 Try running your app**
 * Give your app necessary permissions
 ```bash
 sudo chmod 777 absolute_path_to_your_app
