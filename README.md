@@ -19,7 +19,7 @@ _Source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.htm
 
 ## 1. Setting up the VPC and Subnets
 
-This step requires working from the AWS Management Console.
+The following steps require working from the AWS Management Console.
 
 **1.1. Create a new VPC**
 * 
