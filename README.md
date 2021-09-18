@@ -1,9 +1,9 @@
 # Deploying a PERN app to AWS EC2
 ## Contents
 
-[Intrduction](#introduction)
+[Introduction](#introduction)
 
-[1. Setting up the VPC and Subnets](##-1.-Setting-up-the-VPC-and-Subnets)
+[1. Setting up the VPC and Subnets](#-1.-Setting-up-the-VPC-and-Subnets)
 
 ## 3. Launch a cloud computer using AWS EC2
 
