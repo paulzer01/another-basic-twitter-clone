@@ -172,6 +172,7 @@ Once all the necessary changes have been made, the project is now ready to be de
 ## 3. Launch a cloud computer using AWS EC2
 
 _**First, go to the EC2 dashboard via the AWS Management Console.**_
+
 -----
 **3.1 Create a new EC2 instance**
 
@@ -215,6 +216,7 @@ sudo rm                   # removes file or directory
 ## 4. Setting up a PostgreSQL database on AWS
 
 _**First, go to the RDS Managemment Console via the AWS Management Console.**_
+
 -----
 
 **4.1 Create a Database Subnet group**
@@ -356,6 +358,7 @@ pm2 start app.js -i max   # runs the app with the maximum amount of computer cor
 ## 7. Nginx (reverse proxy) production setup
 
 **Nginx allows us to reverse proxy our server with its IPv4 address and non-standard port to the standard port 80.**
+
 ----
 
 **7.1 Install nginx on the EC2 instance**
