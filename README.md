@@ -21,8 +21,8 @@ _Source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.htm
 
 The following steps require working from the AWS Management Console.
 
-1.1. Create a new VPC
-* 
+**1.1. Create a new VPC**
+
 * Choose a meaningful name for the new VPC
 * Give a CIDR block e.g. 10.11.0.0/16
 * Choose 'No IPv6 CIDR block'
