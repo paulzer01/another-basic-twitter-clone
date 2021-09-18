@@ -19,7 +19,7 @@ _Source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.htm
 
 ## 1. Setting up the VPC and Subnets
 
-_**The following steps require working from the AWS Management Console.**_
+_**This section requires working from the AWS Management Console.**_
 
 -----
 
@@ -103,13 +103,29 @@ HTTP and HTTPS are set to their standard ports of 80 and 443 respectively with 0
 Lastly, we have SSH which will be how we connect to the EC2 instance from our local machine. We put the source IP as our own IP address so that no other machine but our own can access the instance.
 
 ## 2. Setting up the production build
-```javascript
-console.log("hello");
-```
 
-```bash
-npm run build
+**_In this section, we modify the code of our web application so that it is ready to be deployed_**
+
+-----
+
+**2.1 Make necessary changes to client side requests to the backend**
+
+When running a react app on our local system we usually have have two instances running. One for the server and one for the client. However, in deployment we want combine these two to run as one instance. We do this having the srver-side code serve the client side code. Since the client side code will no longer be running on a different instance but will be running on the same instance as the server, naturally this means they will share the same port. This means we no longer need to specify the address of the server side in the client-side files when writing functions that make requests to the server.
+
+For example, instead of writing the following:
+```javascript
+const response = await fetch(
+                "http://localhost:5000/auth/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                }
+            );
 ```
+We now omit the `http://localhost:5000/` part of the fetch address so that it becomes `await fetch("/auth/register", ... )`.
 
 ## 3. Launch a cloud computer with AWS EC2
 
