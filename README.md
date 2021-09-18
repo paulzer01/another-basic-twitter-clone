@@ -468,5 +468,5 @@ Stop your EC2 and RDS Database instances, then terminate them. Then detach your 
 
 
 ## Additional Resources
-* Configure SSL/TLS on Amazon Linux 2: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-amazon-linux-2.html
+Configure SSL/TLS on Amazon Linux 2: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-amazon-linux-2.html
 
