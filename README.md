@@ -371,9 +371,9 @@ sudo nano /etc/nginx/nginx.conf               # opens nginx.conf with the nano t
 * Then add the following to the home `/` location route
 ```
 location / {
-        root absolute_path_leading_to_your_build_directory/build;      # says that for every slash route (/route), we go to the root react directory
-	index index.html;                                              # says we want index to be a html file 
-	try_file $uri /index.html;                                     # says to try index.html and for every subsequent route, go back to index.html again
+        root absolute_path_leading_to_your_build_directory/build;  # says that for every slash /route we go to the root react/build directory
+	index index.html;                                          # says we want index to be a html file 
+	try_file $uri /index.html;                                 # says to try index.html and for every subsequent route, go back to index.html again
 }
 ```
 
