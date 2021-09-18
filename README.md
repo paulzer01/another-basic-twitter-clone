@@ -67,9 +67,16 @@ The internet gateway connects the VPC to the internet. It can receive requests f
 
 * Create 2 route tables both connected to your VPC
 * 1 route table for your public subnet (web server)
-  *
 * 1 route table for your private subnets (database)
+* Edit the routes and subnet associations of each route table (instructions below)
 
+Notice that each route table already has one route with destination 10.11.0.0/16, which is the local route. This allows resources within the same network to communicate with each other.
+
+For the public route table, add an additional route with the destination set as 0.0.0.0/0 and the target set as the internet gateway. This essentially enables any routes that are not for the local 10.11.0.0/16 route to be forwarded to the internet gateway. The 0.0.0.0/0 represents all routes that are not local.
+
+We do not add the internet gateway route to the private route table.
+
+For both route tables, edit the subnet associations by adding the public subnet to the public route table, and the remaining two private subnets to the private route table.
 
 ## 2. Setting up the production build
 ```javascript
