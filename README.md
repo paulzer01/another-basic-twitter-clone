@@ -360,10 +360,21 @@ pm2 start app.js -i max   # runs the app with the maximum amount of computer cor
 sudo amazon-linux-extras install nginx1.12
 ```
 
+-----
+
 **7.2 Edit the Nginx configuration**
 * Open up the nginx configuration file
 ```bash
 sudo nano /etc/nginx/nginx.conf               # opens nginx.conf with the nano text editor that comes with EC2
+```
+* Once in the file, we want to firstly delete the exisiting root path `root /usr/share/nginx/html;` within the `server` directive.
+* Then add the following to the home `/` location route
+```bash
+location / {
+        root absolute_path_leading_to_your_build_directory/build;      # says that for every slash route (/route), we go to the root react directory
+				index index.html;                                              # says we want index to be a html file 
+				try_file $uri /index.html;                                     # says to try index.html and for every subsequent route, go back to index.html again
+}
 ```
 
 ## 8. Terminating AWS resources (to avoid costs)
