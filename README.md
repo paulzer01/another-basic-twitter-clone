@@ -467,5 +467,6 @@ After successfully deploying your app, if you have no intention of leaving it up
 Stop your EC2 and RDS Database instances, then terminate them. Then detach your internet gateway from your VPC - these are resources which need to be stopped and terminated to avoic costs, everything else, including your VPC, subnets, route tables, and security groups do not need to be deleted.
 
 
-
+#Additional Resources
+* Configure SSL/TLS on Amazon Linux 2: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-amazon-linux-2.html
 
