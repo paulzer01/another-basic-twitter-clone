@@ -1,7 +1,7 @@
 # Deploying a PERN app to AWS EC2
 ## Contents
 
-[Introduction](#introduction)
+[0. Introduction](#introduction)
 
 [1. Setting up the VPC and Subnets](#1-setting-up-the-vpc-and-subnets)
 
