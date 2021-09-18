@@ -313,7 +313,7 @@ For example:
 ```bash
 sudo chmod 777 absolute_path_to_your_app
 ```
-* Install the packages needed by your app
+* Go to the directory of your app and install the packages needed by your app
 ```bash
 npm install
 ```
