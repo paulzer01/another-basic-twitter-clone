@@ -311,13 +311,7 @@ npm install
 If everything has been set up correctly, you should be able to access your app via `your_ec2_public_ipv4_address:server_port` e.g. `http://34.209.87.87:5000`.
 
 ## 6. Running the app with PM2
-```bash
-npm install pm2 -g
-```
 
-```bash
-pm2 start [FILE.js]
-```
 
 ## 7. Nginx (reverse proxy) production setup
 
