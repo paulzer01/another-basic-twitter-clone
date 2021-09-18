@@ -108,7 +108,7 @@ Lastly, we have SSH which will be how we connect to the EC2 instance from our lo
 
 -----
 
-**2.1 Make necessary changes to client side requests to the backend**
+**2.1 Make necessary changes to the client side code**
 
 When running a react app on our local system we usually have have two instances running. One for the server and one for the client. However, in deployment we want combine these two to run as one instance. We do this having the srver-side code serve the client side code. Since the client side code will no longer be running on a different instance but will be running on the same instance as the server, naturally this means they will share the same port. This means we no longer need to specify the address of the server side in the client-side files when writing functions that make requests to the server.
 
@@ -125,6 +125,32 @@ const response = await fetch(
                 }
             );
 ```
+
+**2.2 Create the client-side build**
+
+Once the necessary code changes have been made on the client side, we can now package it into a build by running the following.
+```bash
+npm run build
+```
+
+**2.3 Change relevant server-side code so that the "index.html" in our new build is served**
+
+We now need to make changes in the server-side code so that our client side will be served up by the server.
+
+This is achieved by the following:
+```javascript
+// this code will ensure that index.html is served up by the server for every route
+const path = require("path");
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+if (process.env.NODE_ENV === 'production') {
+    app.get('*/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+    });
+}
+```
+
 We now omit the `http://localhost:5000/` part of the fetch address so that it becomes `await fetch("/auth/register", ... )`.
 
 ## 3. Launch a cloud computer with AWS EC2
