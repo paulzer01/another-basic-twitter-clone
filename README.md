@@ -168,6 +168,7 @@ path.resolve('/a', '/b') // Outputs '/b'
 -----
 
 **2.4 Make the necessary code changes to connect to the AWS RDS PostgreSQL database**
+
 At this stage, we have not yet deployed our RDS PostgreSQL Database on AWS. However, we will eventually need to update our code to connect to the database. We can do this now and set up our Database to reflect the changes we have made later, or update our code later to reflect the how we have set up the database using the `sudo nano` text editor available to the EC2 instance.
 ```javascript
 const { Pool } = require('pg');
@@ -181,6 +182,17 @@ const pool = new Pool({
 });
 
 module.exports = pool;
+```
+Alternatively, we can set up our environmental variables on AWS to hold the information necessary to connect to our database.
+
+```javascript
+const pool = new Pool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+    database: process.end.DATABASE_NAME
+});
 ```
 
 -----
