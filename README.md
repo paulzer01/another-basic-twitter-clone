@@ -12,7 +12,7 @@ This will be a guide to setup a PostgreSQL, Express, React, Node full stack web 
 
 In the example above, 10.11.0.0/16 is a CIDR block where the first 2 octets (10.11) are the network prefix and the last 2 octets (0.0) are unsued and can be used to create private host addresses that can be assigned to different resources within the VPC. The /16 is a subnet mask which indicates that 2 octets or 16 bits worth of ip addresses are available to the subnet. Since each octet is 8 bytes (which is either a 0 or a 1), that means there are 2^8 = 256 combinations available per octet. This means that there are 256 * 256 = 65,536 IP addresses are usable by the new VPC. Since computers count from 0, each octet can be a number between 0 to 255.
 
-_Note that the /16 denotes the number of bytes that are in use as the network prefix. Since there are 4 octets per IPv4 address, this means there are 32 bytes in total. Hence, the /16 - which is half of the 32 total bytes - implies that 16 bytes are in use as the network prefix, so the remaining 16 bytes are available to use as host addresses._
+Note that the /16 denotes the number of bytes that are in use as the network prefix. Since there are 4 octets per IPv4 address, this means there are 32 bytes in total. Hence, the /16 - which is half of the 32 total bytes - implies that 16 bytes are in use as the network prefix, so the remaining 16 bytes are available to use as host addresses.
 
 **1.2. Create new subnets**
 
