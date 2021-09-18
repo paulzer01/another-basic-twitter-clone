@@ -175,7 +175,7 @@ _**First, go to the EC2 dashboard via the AWS Management Console.**_
 * Select the Amazon Linux AMI operating system free tier option
 * Configure the instance details (instructions below)
 
-Use the following configurations for our new EC2 instance.
+**3.1.1 Use the following configurations for our new EC2 instance:**
 * **Network:** Choose our VPC
 * **Subnet:** Choose the public subnet
 * **Auto-assign Public IP:** Enable this
@@ -183,10 +183,10 @@ Use the following configurations for our new EC2 instance.
 
 For the purposes of this exercise, we leave the storage as default and do not need to set any tags.
 
-Choose a security group for the new EC2 instance:
+**3.1.2 Choose a security group for the new EC2 instance:**
 * Choose 'Select an existing security group' and choose our previously defined security group for our web server
-
-Hit 'Launch' and choose 'Create a new key pair' when prompted:
+**
+3.1.3 Hit 'Launch' and choose 'Create a new key pair' when prompted:**
 * Give the key pair a new name
 * Download the key pair
 * **Important:** Make sure to keep the key pair safe, as it cannot be downloaded again. It is needed to access the EC2 instance from our local computer.
