@@ -15,7 +15,7 @@
 
 [6. Running the app with PM2](#6-running-the-app-with-pm2)
 
-[7. Nginx (reverse proxy) production setup](#7-nginx-reverse-proxy-production-setup)
+[7. NGINX (reverse proxy) production setup](#7-nginx-reverse-proxy-production-setup)
 
 [8. Terminating AWS resources (to avoid costs)](#8-terminating-aws-resources-to-avoid-costs)
 
@@ -23,7 +23,7 @@
 
 
 ## Introduction
-This is a guide to set up a PostgreSQL, Express, React, Node full stack web application to an AWS EC2 instance running an Amazon Linux AMI 2. The setup will use PM2 as a cluster manager and NGINX as a reverse proxy. We will use RDS to deply the PSQL database.
+This is a guide to help you deploy a PostgreSQL, Express, React, Node full stack web application to an AWS EC2 instance running an Amazon Linux AMI 2. The setup will use PM2 as a cluster manager and NGINX as a reverse proxy. We will use RDS to deply the PSQL database.
 
 We will need to understand what the following are:
 * Virtual private cloud (VPC) — A virtual network dedicated to your AWS account that you can deploy AWS resources into and have all your resources contained in one virtual place.
@@ -378,7 +378,7 @@ npm install
 
 If everything has been set up correctly, you should be able to access your app via `your_ec2_public_ipv4_address:app_port` e.g. `http://34.209.87.87:5000`.
 
-However, we do not want to specify the port of the app to access it. To eliminate the need to specify the port, we use Nginx which is discussed below.
+However, we do not want to specify the port of the app to access it. To eliminate the need to specify the port, we use NGINX which is discussed below.
 
 ## 6. Running the app with PM2
 
@@ -408,21 +408,21 @@ pm2 delete app_ID         # removes the app permanently so that it cannot be res
 pm2 start app.js -i max   # runs the app with the maximum amount of computer cores available
 ```
 
-## 7. Nginx (reverse proxy) production setup
+## 7. NGINX (reverse proxy) production setup
 
-**Nginx allows us to reverse proxy our server with its IPv4 address and non-standard port to the standard port 80 (which is implicit in all website URLs on the internet using the internet communication protocol, HyperText Transfer Protocol (HTTP).**
+**NGINX allows us to reverse proxy our server with its IPv4 address and non-standard port to the standard port 80 (which is implicit in all website URLs on the internet using the internet communication protocol, HyperText Transfer Protocol (HTTP).**
 
 ----
 
-**7.1 Install nginx on the EC2 instance**
+**7.1 Install NGINX on the EC2 instance**
 ```
 sudo amazon-linux-extras install nginx1.12
 ```
 
 -----
 
-**7.2 Edit the Nginx configuration**
-* Open up the nginx configuration file
+**7.2 Edit the NGINX configuration**
+* Open up the NGINX configuration file
 ```
 sudo nano /etc/nginx/nginx.conf               # opens nginx.conf with the nano text editor that comes with EC2
 ```
@@ -444,7 +444,7 @@ location / {
 	try_file $uri /index.html;                                 # serves index.html first and for every subsequent request
 }
 ```
-* Set up nginx to handle our API/server routes. This is essentially boiler plate code except for `proxy_pass` which is passed the public IP of our EC2 instance and its non-standard port e.g. `http://34.209.87.87:5000`. This IP addess is proxied to the standard port 80 which will allow us to access the website as normal without specifying its port. We declare as many server routes as needed e.g. if we have routes that start with `/auth` as well as routes that begin with `api` then we would need to define a new route for each of them.
+* Set up NGINX to handle our API/server routes. This is essentially boiler plate code except for `proxy_pass` which is passed the public IP of our EC2 instance and its non-standard port e.g. `http://34.209.87.87:5000`. This IP addess is proxied to the standard port 80 which will allow us to access the website as normal without specifying its port. We declare as many server routes as needed e.g. if we have routes that start with `/auth` as well as routes that begin with `api` then we would need to define a new route for each of them.
 ```
 location /route_name/ {
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -459,11 +459,11 @@ location /route_name/ {
         }`
 ```
 * Save and exit the editor
-* Test nginx to see if the configuration is valid. The test should say `syntax is ok` and `test is successful`.
+* Test NGINX to see if the configuration is valid. The test should say `syntax is ok` and `test is successful`.
 ```
 sudo nginx -t
 ```
-* Restart nginx for the changes to take effect
+* Restart NGINX for the changes to take effect
 ```
 sudo systemctl restart ngix
 ```
@@ -473,8 +473,8 @@ sudo nano /var/log/nginx/error.log
 ```
 -----
 
-**7.3 Give Nginx necessary permissions**
-Nginx needs to have +x access on all directories leading to the root directory of the website. Ensure you have +x permissions granted on all of the directories in the path leading to the build directory. For example, if the root directory to the website is `/home/username/siteroot`.
+**7.3 Give NGINX necessary permissions**
+NGINX needs to have +x access on all directories leading to the root directory of the website. Ensure you have +x permissions granted on all of the directories in the path leading to the build directory. For example, if the root directory to the website is `/home/username/siteroot`.
 ```
 chmod +x /home/
 chmod +x /home/username
