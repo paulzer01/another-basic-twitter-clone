@@ -290,9 +290,10 @@ sudo curl https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | 
 * Exit and re-access the EC2 instance so that the installation takes effect
 * Install Node
 ```bash
-nvm ls-remote # lists the node versions available for download, choose the latest LTS
+nvm ls-remote                           # lists the node versions available for download, choose the latest LTS
 nvm install latest_node_LTS
 ```
+-----
 
 **5.3 Try running your app**
 * Give your app necessary permissions
@@ -303,6 +304,9 @@ sudo chmod 777 absolute_path_to_your_app
 ```bash
 npm install
 ```
+* Try running your app with `npm start` or `node your_server_files_name.js`
+
+If everything has been set up correctly, you should be able to access your app via `your_ec2_public_ipv4_address:server_port` e.g. `http://34.209.87.87:5000`.
 
 ## 6. Running the app with PM2
 ```bash
