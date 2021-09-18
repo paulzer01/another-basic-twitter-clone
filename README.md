@@ -17,7 +17,7 @@
 
 [## 7. Nginx (reverse proxy) production setup](#7-nginx-(reverse-proxy)-production-setup)
 
-[## 8. Terminating AWS resources (to avoid costs)](#8-terminating-aws-resources-(to-avoid-costs)
+[## 8. Terminating AWS resources (to avoid costs)](#8-terminating-aws-resources-(to-avoid-costs))
 
 [## 9. Additional Resources](#9-additional-resources)
 
