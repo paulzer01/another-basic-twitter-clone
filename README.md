@@ -41,7 +41,8 @@ We will need to understand what the following are:
 _Source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html_
 
 **The diagram below represents the end configuration of the deployment setup**
-![AWS](https://user-images.githubusercontent.com/70828466/133891224-5223af27-b485-485b-90ef-cab9d9acb252.png)
+![AWS (1)](https://user-images.githubusercontent.com/70828466/133891316-c380cfe6-847e-4eb7-8cfe-47aa51767cc1.png)
+
 
 ## 1. Setting up the VPC and Subnets
 
