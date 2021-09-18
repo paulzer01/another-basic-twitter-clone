@@ -210,6 +210,27 @@ sudo rm                   # removes file or directory
 
 ## 4. Setting up a PostgreSQL database on AWS
 
+_**First, go to the RDS Managemment Console via the AWS Management Console.**_
+-----
+
+**4.1 Create a Database Subnet group**
+* In the RDS Management Console, click on 'Subnet groups' and select 'Create DB Subnet Group'
+* Give the subnet group a name
+* Choose your VPC
+* Add our two private subnets to the subnet group (the subnets will be listed under the availability zone that we set them up in)
+* Clck 'Create'
+
+The database subnet group spans to availability zones so that if a server fails in one availability zone, our database will still be fine.
+
+-----
+**4.2. Create a Security Group for the Database**
+* Go back to the VPC console and create a new security group
+* Give it a meaningful name
+* Edit the inbound rules as such:
+| Type                | Port range          | Source              | IP version |
+| ------------------- |:-------------------:|:-------------------:| ----------:|
+| Custom TCP Rule     | 5432                | Public subnet CIDR  | IPv4       |
+
 ## 5. Deploying the app to AWS
 
 ## 6. Running the app with PM2
