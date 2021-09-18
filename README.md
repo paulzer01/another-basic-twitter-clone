@@ -263,9 +263,9 @@ sudo amazon-linux-extras install postgresql13     # or any other version you wou
 ```bash
 psql -d database_name -h db_endpoint -p db_port -U master_username
 ```
-**Note:** You will always be prompted to enter a password following the above command. However, if you did not set up a password, simply press enter to proceed.
+**Note 1:** You will always be prompted to enter a password following the above command. However, if you did not set up a password, simply press enter to proceed.
 
-**Note:** Navigate the RDS Management Console to find the database name, endpoint, and port under the 'Details' section of the newly created AWS PSQL Database.
+**Note 2:** Navigate the RDS Management Console to find the database name, endpoint, and port under the 'Details' section of the newly created AWS PSQL Database.
 
 -----
 
