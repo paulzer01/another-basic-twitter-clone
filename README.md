@@ -5,21 +5,22 @@
 
 [1. Setting up the VPC and Subnets](#1-setting-up-the-vpc-and-subnets)
 
-## 3. Launch a cloud computer using AWS EC2
+[## 2. Setting up the production build](#2-setting-up-the-production-build)
 
-## 4. Setting up a PostgreSQL database on AWS
+[## 3. Launch a cloud computer using AWS EC2](#3-launch-a-cloud-computer-using-aws-ec2)
 
-## 5. Deploying the app to AWS
+[## 4. Setting up a PostgreSQL database on AWS](#4-setting-up-a-postgresql-database-on-aws)
 
-## 6. Running the app with PM2
+[## 5. Deploying the app to AWS](#5-deploying-the-app-to-aws)
 
-## 7. Nginx (reverse proxy) production setup
+[## 6. Running the app with PM2](#6-running-the-app-with-pm2)
 
-## 8. Terminating AWS resources (to avoid costs)
+[## 7. Nginx (reverse proxy) production setup](#7-nginx-(reverse-proxy)-production-setup)
 
-## 9. Additional Resources
+[## 8. Terminating AWS resources (to avoid costs)](#8-terminating-aws-resources-(to-avoid-costs)
 
-## 2. Setting up the production build
+[## 9. Additional Resources](#9-additional-resources)
+
 
 ## Introduction
 This is a guide to set up a PostgreSQL, Express, React, Node full stack web application to an AWS EC2 instance running an Amazon Linux AMI 2. The setup will use PM2 as a cluster manager and NGINX as a reverse proxy. We will use RDS to deply the PSQL database.
