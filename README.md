@@ -165,7 +165,48 @@ path.resolve('/a', '/b') // Outputs '/b'
 
 Once all the necessary changes have been made, the project is now ready to be deployed to a GitHub repository.
 
-## 3. Launch a cloud computer with AWS EC2
+## 3. Launch a cloud computer using AWS EC2
+
+_**First, go to the EC2 dashboard via the AWS Management Console.**_
+-----
+**3.1 Create a new EC2 instance**
+
+* Click on 'Launch instance'
+* Select the Amazon Linux AMI operating system free tier option
+* Configure the instance details (instructions below)
+
+Use the following configurations for our new EC2 instance.
+* **Network:** Choose our VPC
+* **Subnet:** Choose the public subnet
+* **Auto-assign Public IP:** Enable this
+* Leave everything else as is (or configure to your liking)
+
+For the purposes of this exercise, we leave the storage as default and do not need to set any tags.
+
+Choose a security group for the new EC2 instance:
+* Choose 'Select an existing security group' and choose our previously defined security group for our web server
+
+Hit 'Launch' and choose 'Create a new key pair' when prompted:
+* Give the key pair a new name
+* Download the key pair
+* **Important:** Make sure to keep the key pair safe, as it cannot be downloaded again. It is needed to access the EC2 instance from our local computer.
+
+The EC2 instance will take a short while before it starts running after it has been launched.
+-----
+
+**3.2 Accessing the EC2 instance from our local computer**
+* Open a new terminal window and connect to the EC2 instance using the following command:
+```bash
+ssh -i "PATH/YOUR_KEY_PAIR.pem" ec2-user@YOUR_EC2_INSTANCE_PUBLIC_IPV4
+```
+* The following commands can be used in our newly connected virtual computer:
+```bash
+cd /                      :::: goes to home directory
+ls                        :::: lists current files in current folder
+pwd                       :::: shows path of current directory
+sudo nano                 :::: opens up the ubuntu instance's code editor
+sudo rm {FILE/DIR}        :::: removes file or directory
+```
 
 ## 4. Setting up a PostgreSQL database on AWS
 
