@@ -451,7 +451,7 @@ chmod +x /home/username/siteroot
 -----
 You should now be able to copy the public IPv4 address of your EC2 instance and paste it into the address bar of your browser without the non-standard `:port` post-fix and be able to access your deployed web application. Congratulations! You've successfully deployed your web application on the AWS cloud.
 
-## 8. IMPORTANT! Terminating AWS resources (to avoid costs)
+## 8. Terminating AWS resources (to avoid costs)
 
 After successfully deploying your app, if you have no intention of leaving it up then it is vital to terminate the instances you have deployed on AWS to avoid being charged for usage.
 
