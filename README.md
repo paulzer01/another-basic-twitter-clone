@@ -167,6 +167,24 @@ path.resolve('/a', '/b') // Outputs '/b'
 
 -----
 
+**2.4 Make the necessary code changes to connect to the AWS RDS PostgreSQL database**
+At this stage, we have not yet deployed our RDS PostgreSQL Database on AWS. However, we will eventually need to update our code to connect to the database. We can do this now and set up our Database to reflect the changes we have made later, or update our code later to reflect the how we have set up the database using the `sudo nano` text editor available to the EC2 instance.
+```javascript
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    host: "db_endpoint",
+    user: "db_master_username",
+    password: "db_password",
+    port: 5432,
+    database: "db_database_name"
+});
+
+module.exports = pool;
+```
+
+-----
+
 Once all the necessary changes have been made, the project is now ready to be deployed to a GitHub repository.
 
 ## 3. Launch a cloud computer using AWS EC2
@@ -423,7 +441,7 @@ You should now be able to copy the public IPv4 address of your EC2 instance and 
 
 ## 8. IMPORTANT! Terminating AWS resources (to avoid costs)
 
-After successfully deploying our app, if we have no intention of leaving it up then it is vital to terminate the instances you have deployed on AWS to avoid being charged for usage.
+After successfully deploying your app, if you have no intention of leaving it up then it is vital to terminate the instances you have deployed on AWS to avoid being charged for usage.
 
 Stop your EC2 and RDS Database instances, then terminate them. Then detach your internet gateway from your VPC - these are resources which need to be stopped and terminated to avoic costs, everything else, including your VPC, subnets, route tables, and security groups do not need to be deleted.
 
