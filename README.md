@@ -183,7 +183,7 @@ const pool = new Pool({
 
 module.exports = pool;
 ```
-Alternatively, we can set up our environmental variables on AWS to hold the information necessary to connect to our database.
+Alternatively, we can set up environmental variables on AWS to hold the information necessary to connect to our database.
 
 ```javascript
 const pool = new Pool({
