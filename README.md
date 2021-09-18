@@ -325,6 +325,32 @@ If everything has been set up correctly, you should be able to access your app v
 
 ## 6. Running the app with PM2
 
+**6.1 Install PM2**
+```bash
+npm install pm2 -g
+```
+
+The `-g` specifies that PM2 will be installed globally because we want PM2 to work outside of just the directory of the app. If it was installed in just the local folder, then if the server stopped running, PM2 would also have to stop.
+
+PM2 is a cluster management system that allows us to load balance. This means that PM2 gives us the ability to allocate resources/nodes to our applications as we see fit to maximise efficiency. It also used so that our app will keep running even when we need to make changes, and will restart our app if it crashes.
+
+-----
+
+**6.2 Start the app using PM2 + PM2 commands**
+```bash
+pm2 start app.js          # handd off the responsibility to start the server to PM2
+
+pm2 list                  # shows list of apps running in case we have more than one app
+
+pm2 stop app_ID           # stops the app with corresponding ID which can be found in the app list
+
+pm2 restart app_ID        # restarts app with corresponding ID
+
+pm2 delete app_ID         # removes the app permanently so that it cannot be restarted
+
+pm2 start app.js -i max   # runs the app with the maximum amount of computer cores available
+```
+
 
 ## 7. Nginx (reverse proxy) production setup
 
