@@ -354,9 +354,8 @@ pm2 start app.js -i max   # runs the app with the maximum amount of computer cor
 ```
 
 ## 7. Nginx (reverse proxy) production setup
------
 
-Nginx allows us to reverse proxy the IPv4 of our public server with its non-standard port to use the standard port 80 instead. 
+**Nginx allows us to reverse proxy our server with its IPv4 address and non-standard port to the standard port 80.**
 ----
 
 **7.1 Install nginx on the EC2 instance**
