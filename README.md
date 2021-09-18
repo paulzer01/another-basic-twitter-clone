@@ -323,9 +323,11 @@ npm install
 
 If everything has been set up correctly, you should be able to access your app via `your_ec2_public_ipv4_address:app_port` e.g. `http://34.209.87.87:5000`.
 
+However, we do not want to specify the port of the app to access it. To eliminate the need to specify the port, we use Nginx which is discussed below.
+
 ## 6. Running the app with PM2
 
-**6.1 Install PM2**
+**6.1 Install PM2 on the EC2 instance**
 ```bash
 npm install pm2 -g
 ```
@@ -351,8 +353,14 @@ pm2 delete app_ID         # removes the app permanently so that it cannot be res
 pm2 start app.js -i max   # runs the app with the maximum amount of computer cores available
 ```
 
-
 ## 7. Nginx (reverse proxy) production setup
+
+**7.1 Install nginx on the EC2 instance**
+```bash
+sudo amazon-linux-extras install nginx1.12
+```
+
+**7.2 Configure**
 
 ## 8. Terminating AWS resources (to avoid costs)
 
