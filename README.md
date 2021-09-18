@@ -45,6 +45,13 @@ Subnets are simply sub networks within a wider network, in this case, the VPC. S
 
 Our web server and database will be able to communicate with each other through a route table.
 
+**1.3 Create an Internet Gateway for the VPC**
+
+* Give it a name tag that is meaningful
+* Under 'Actions', attach it to your VPC
+
+The internet gateway connects the VPC to the internet. It can receive requests from the internet to the VPC, or take requests from the VPC which are then sent into the internet. The internet gateway has its own public IP address which identifies the VPC network as a whole on the internet. The VPC network, (as alluded to in the above sections) can contain within itself thousands of IP addresses.
+
 ## 2. Setting up the production build
 ```javascript
 console.log("hello");
