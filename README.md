@@ -1,4 +1,9 @@
 # Deploying a PERN app to AWS EC2
+## Contents
+
+##introduction
+##-1.-setting-up-the-vpc-and-subnets
+
 ## Introduction
 This is a guide to set up a PostgreSQL, Express, React, Node full stack web application to an AWS EC2 instance running an Amazon Linux AMI 2. The setup will use PM2 as a cluster manager and NGINX as a reverse proxy. We will use RDS to deply the PSQL database.
 
@@ -467,6 +472,6 @@ After successfully deploying your app, if you have no intention of leaving it up
 Stop your EC2 and RDS Database instances, then terminate them. Then detach your internet gateway from your VPC - these are resources which need to be stopped and terminated to avoic costs, everything else, including your VPC, subnets, route tables, and security groups do not need to be deleted.
 
 
-## Additional Resources
+## 9. Additional Resources
 Configure SSL/TLS on Amazon Linux 2: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-amazon-linux-2.html
 
