@@ -268,10 +268,41 @@ psql -d database_name -h db_endpoint -p db_port -U master_username
 **Note 2:** Navigate the RDS Management Console to find the database name, endpoint, and port under the 'Details' section of the newly created AWS PSQL Database.
 
 -----
-
 Once inside the new PSQL database, create the necessary databases and tables for your app using standard PSQL commands.
 
 ## 5. Deploying the app to AWS
+
+**5.1 Clone your web app onto the EC2 instance**
+* First, install git on your EC2 instance
+```bash
+sudo yum install git
+```
+* Then, clone the GitHub repository which contains your web app
+```bash
+sudo git clone your_github_repo_url
+```
+-----
+**5.2 Install Node via the Node Version Manager**
+* Install the node version manager which is used to download npm and node
+```bash
+sudo curl https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash 
+```
+* Exit and re-access the EC2 instance so that the installation takes effect
+* Install Node
+```bash
+nvm ls-remote # lists the node versions available for download, choose the latest LTS
+nvm install latest_node_LTS
+```
+
+**5.3 Try running your app**
+* Give your app necessary permissions
+```bash
+sudo chmod 777 absolute_path_to_your_app
+```
+* Install the packages needed by your app
+```bash
+npm install
+```
 
 ## 6. Running the app with PM2
 ```bash
