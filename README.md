@@ -5,21 +5,21 @@
 
 [1. Setting up the VPC and Subnets](#1-setting-up-the-vpc-and-subnets)
 
-[## 2. Setting up the production build](#2-setting-up-the-production-build)
+[2. Setting up the production build](#2-setting-up-the-production-build)
 
-[## 3. Launch a cloud computer using AWS EC2](#3-launch-a-cloud-computer-using-aws-ec2)
+[3. Launch a cloud computer using AWS EC2](#3-launch-a-cloud-computer-using-aws-ec2)
 
-[## 4. Setting up a PostgreSQL database on AWS](#4-setting-up-a-postgresql-database-on-aws)
+[4. Setting up a PostgreSQL database on AWS](#4-setting-up-a-postgresql-database-on-aws)
 
-[## 5. Deploying the app to AWS](#5-deploying-the-app-to-aws)
+[5. Deploying the app to AWS](#5-deploying-the-app-to-aws)
 
-[## 6. Running the app with PM2](#6-running-the-app-with-pm2)
+[6. Running the app with PM2](#6-running-the-app-with-pm2)
 
-[## 7. Nginx (reverse proxy) production setup](#7-nginx-reverse-proxy-production-setup)
+[7. Nginx (reverse proxy) production setup](#7-nginx-reverse-proxy-production-setup)
 
-[## 8. Terminating AWS resources (to avoid costs)](#8-terminating-aws-resources-to-avoid-costs)
+[8. Terminating AWS resources (to avoid costs)](#8-terminating-aws-resources-to-avoid-costs)
 
-[## 9. Additional Resources](#9-additional-resources)
+[9. Additional Resources](#9-additional-resources)
 
 
 ## Introduction
