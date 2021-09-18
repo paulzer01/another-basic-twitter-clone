@@ -257,12 +257,20 @@ We set Source to 'Custom' and use the CIDR block of the public subnet which cont
 * Connect to your EC2 instance
 * Install PSQL on the EC2 instance
 ```bash
-
 sudo amazon-linux-extras install postgresql13     # or any other version you would like to use
-
-psql --version                                    # check whether it was installed successfully
-psql --help                                       # get all commands for psql
 ```
+* Access the PSQL database through our EC2 instance
+```bash
+psql -d database_name -h db_endpoint -p db_port -U master_username
+```
+**Note:** You will always be prompted to enter a password following the above command. However, if you did not set up a password, simply press enter to proceed.
+
+**Note:** Navigate the RDS Management Console to find the database name, endpoint, and port under the 'Details' section of the newly created AWS PSQL Database.
+
+-----
+
+**4.5 Set up the database schema for your app**
+* Once inside the new PSQL database, create the necessary databases and tables for your app using standard PSQL commands.
 
 ## 5. Deploying the app to AWS
 
