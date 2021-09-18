@@ -235,8 +235,8 @@ The database subnet group spans to availability zones so that if a server fails 
 We set Source to 'Custom' and use the CIDR block of the public subnet which contains the web server e.g. 10.11.1.0/24. This ensures that only traffic coming from this local IPv4 address can speak to our database.
 
 **4.3 Create a new PostgreSQL database**
-* Choose 'Create Database' using 'PostgreSQL' (use the free tier to avoid costs)
-* Name your DB instance identifier
+1. Choose 'Create Database' using 'PostgreSQL' (use the free tier to avoid costs)
+2. Name your DB instance identifier
 * Pick your Master username (and set a password if you want)
 * Pick a DB instance class (pick the lowest performance one if you only want to test out how things work to reduce costs)
 * Choose your VPC
