@@ -409,7 +409,17 @@ sudo systemctl restart ngix
 ```
 sudo nano /var/log/nginx/error.log
 ```
+-----
 
+**7.3 Give Nginx necessary permissions**
+Nginx needs to have +x access on all directories leading to the root directory of the website. Ensure you have +x permissions granted on all of the directories in the path leading to the build directory. For example, if the root directory to the website is `/home/username/siteroot`.
+```
+chmod +x /home/
+chmod +x /home/username
+chmod +x /home/username/siteroot
+```
+-----
+You should now be able to copy the public IPv4 address of your EC2 instance and paste it into the address bar of your browser without the non-standard `:port` post-fix and be able to access your deployed web application.
 
 ## 8. Terminating AWS resources (to avoid costs)
 
