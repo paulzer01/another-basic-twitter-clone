@@ -355,6 +355,9 @@ pm2 start app.js -i max   # runs the app with the maximum amount of computer cor
 
 ## 7. Nginx (reverse proxy) production setup
 
+Nginx allows us to reverse proxy the IPv4 of our public server with its non-standard port to use the standard port 80 instead. 
+----
+
 **7.1 Install nginx on the EC2 instance**
 ```
 sudo amazon-linux-extras install nginx1.12
@@ -375,6 +378,10 @@ location / {
 	index index.html;                                          # sets the index to be index.html 
 	try_file $uri /index.html;                                 # serves index.html first and for every subsequent request
 }
+```
+* Set up nging to handle our API/server routes. This is essentially boiler plate code except for `proxy_pass` which is passed our the public IP of our EC2 instance and the non-standard port.
+```
+
 ```
 
 ## 8. Terminating AWS resources (to avoid costs)
