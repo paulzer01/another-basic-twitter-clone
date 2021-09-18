@@ -132,7 +132,7 @@ We now omit the `http://localhost:5000/` part of the fetch address so that it be
 **2.2 Create the client-side build**
 
 Once the necessary code changes have been made on the client side, we can now package it into a production build by running the following. This will output a build of the React app in a directory called build.
-```bash
+```
 npm run build
 ```
 Move the build folder into the node/express server.
@@ -200,11 +200,11 @@ The EC2 instance will take a short while before it starts running after it has b
 
 **3.2 Accessing the EC2 instance from our local computer**
 * Open a new terminal window and connect to the EC2 instance using the following command:
-```bash
+```
 ssh -i "your-keypair.pem" ec2-user@your-ec2-instance-public-ip-address
 ```
 * The following commands can be used in our newly connected virtual computer:
-```bash
+```
 cd /                      # goes to root directory
 ls                        # lists files in current directorylea
 pwd                       # shows path of current directory
@@ -260,11 +260,11 @@ We set Source to 'Custom' and use the CIDR block of the public subnet which cont
 **4.4 Connect to the AWS PSQL Database**
 * Connect to your EC2 instance
 * Install PSQL on the EC2 instance
-```bash
+```
 sudo amazon-linux-extras install postgresql13     # or any other version you would like to use
 ```
 * Access the PSQL database through our EC2 instance
-```bash
+```
 psql -d database_name -h db_endpoint -p db_port -U master_username
 ```
 **Note 1:** You will always be prompted to enter a password following the above command. However, if you did not set up a password, simply press enter to proceed.
@@ -278,22 +278,22 @@ Once inside the new PSQL database, create the necessary databases and tables for
 
 **5.1 Clone your web app onto the EC2 instance**
 * First, install git on your EC2 instance
-```bash
+```
 sudo yum install git
 ```
 * Then, clone the GitHub repository which contains your web app
-```bash
+```
 sudo git clone your_github_repo_url
 ```
 -----
 **5.2 Install Node via the Node Version Manager**
 * Install the node version manager which is used to download npm and node
-```bash
+```
 sudo curl https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash 
 ```
 * Exit and re-access the EC2 instance so that the installation takes effect
 * Install Node
-```bash
+```
 nvm ls-remote                           # lists the node versions available for download, choose the latest LTS
 nvm install latest_node_LTS
 ```
@@ -310,11 +310,11 @@ For example:
 
 **5.4 Try running your app**
 * Give your app necessary permissions
-```bash
+```
 sudo chmod 777 absolute_path_to_your_app
 ```
 * Go to the directory of your app and install the packages needed by your app
-```bash
+```
 npm install
 ```
 * Try running your app with `npm start` or `node your_server_files_name.js`
@@ -328,7 +328,7 @@ However, we do not want to specify the port of the app to access it. To eliminat
 ## 6. Running the app with PM2
 
 **6.1 Install PM2 on the EC2 instance**
-```bash
+```
 npm install pm2 -g
 ```
 
@@ -339,7 +339,7 @@ PM2 is a cluster management system that allows us to load balance. This means th
 -----
 
 **6.2 Start the app using PM2 + PM2 commands**
-```bash
+```
 pm2 start app.js          # handd off the responsibility to start the server to PM2
 
 pm2 list                  # shows list of apps running in case we have more than one app
@@ -356,7 +356,7 @@ pm2 start app.js -i max   # runs the app with the maximum amount of computer cor
 ## 7. Nginx (reverse proxy) production setup
 
 **7.1 Install nginx on the EC2 instance**
-```bash
+```
 sudo amazon-linux-extras install nginx1.12
 ```
 
@@ -364,12 +364,12 @@ sudo amazon-linux-extras install nginx1.12
 
 **7.2 Edit the Nginx configuration**
 * Open up the nginx configuration file
-```bash
+```
 sudo nano /etc/nginx/nginx.conf               # opens nginx.conf with the nano text editor that comes with EC2
 ```
 * Once in the file, we want to firstly delete the exisiting root path `root /usr/share/nginx/html;` within the `server` directive.
 * Then add the following to the home `/` location route
-```bash
+```
 location / {
         root absolute_path_leading_to_your_build_directory/build;      # says that for every slash route (/route), we go to the root react directory
 	index index.html;                                              # says we want index to be a html file 
