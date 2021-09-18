@@ -197,7 +197,7 @@ The EC2 instance will take a short while before it starts running after it has b
 **3.2 Accessing the EC2 instance from our local computer**
 * Open a new terminal window and connect to the EC2 instance using the following command:
 ```bash
-ssh -i "PATH/YOUR_KEY_PAIR.pem" ec2-user@YOUR_EC2_INSTANCE_PUBLIC_IPV4
+ssh -i "your-keypair.pem" ec2-user@your-ec2-instance-public-ip-address
 ```
 * The following commands can be used in our newly connected virtual computer:
 ```bash
