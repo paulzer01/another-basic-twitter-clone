@@ -419,7 +419,14 @@ chmod +x /home/username
 chmod +x /home/username/siteroot
 ```
 -----
-You should now be able to copy the public IPv4 address of your EC2 instance and paste it into the address bar of your browser without the non-standard `:port` post-fix and be able to access your deployed web application.
+You should now be able to copy the public IPv4 address of your EC2 instance and paste it into the address bar of your browser without the non-standard `:port` post-fix and be able to access your deployed web application. Congratulations! You've successfully deployed your web application on the AWS cloud.
 
-## 8. Terminating AWS resources (to avoid costs)
+## 8. IMPORTANT! Terminating AWS resources (to avoid costs)
+
+After successfully deploying our app, if we have no intention of leaving it up then it is vital to terminate the instances you have deployed on AWS to avoid being charged for usage.
+
+Stop your EC2 and RDS Database instances, then terminate them. Then detach your internet gateway from your VPC - these are resources which need to be stopped and terminated to avoic costs, everything else, including your VPC, subnets, route tables, and security groups do not need to be deleted.
+
+
+
 
