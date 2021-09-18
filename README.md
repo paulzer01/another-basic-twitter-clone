@@ -202,7 +202,7 @@ ssh -i "your-keypair.pem" ec2-user@your-ec2-instance-public-ip-address
 * The following commands can be used in our newly connected virtual computer:
 ```bash
 cd /                      # goes to root directory
-ls                        # lists files in current directory
+ls                        # lists files in current directorylea
 pwd                       # shows path of current directory
 sudo nano                 # opens up the ubuntu instance's code editor
 sudo rm                   # removes file or directory
