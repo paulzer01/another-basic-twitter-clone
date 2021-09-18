@@ -227,6 +227,7 @@ The database subnet group spans to availability zones so that if a server fails 
 * Go back to the VPC console and create a new security group
 * Give it a meaningful name
 * Edit the inbound rules as such:
+
 | Type                | Port range          | Source              | IP version |
 | ------------------- |:-------------------:|:-------------------:| ----------:|
 | Custom TCP Rule     | 5432                | Public subnet CIDR  | IPv4       |
