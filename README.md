@@ -143,15 +143,23 @@ This is achieved by setting a path to the build directory:
 ```javascript
 const path = require("path");
 
+// points to the build directory so the server can serve the static files from our React app
 app.use(express.static(path.join(__dirname, 'build')));
 
-// ensures that index.html is served up by the server for every route
+// ensures that index.html is served up by the server for every route when we are in a production environment
 if (process.env.NODE_ENV === 'production') {
     app.get('*/', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
     });
 }
 ```
+**Note:** We can also use `res.sendFile(path.join(__dirname, 'build', 'index.html'));`. The different between `path.join` and `path.resolve` are in how they deal with segments starting with `/`; `join` will concatenate it with the previous argument, `resolve` will treat the previous argument as the root directory and ignore all previous paths.
+```javascript
+path.join('/a', '/b') // Outputs '/a/b'
+
+path.resolve('/a', '/b') // Outputs '/b'
+```
+`path.resolve` will always result in an absolute URL, and will use the current working directory as a base to resolve this path. But as `__dirname` is an environment variable that tells you the absolute path of the directory containing the currently executing file, in this case it doesn't matter whether we use `join` or `resolve`.
 
 ## 3. Launch a cloud computer with AWS EC2
 
