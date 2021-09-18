@@ -382,10 +382,34 @@ location / {
 	try_file $uri /index.html;                                 # serves index.html first and for every subsequent request
 }
 ```
-* Set up nging to handle our API/server routes. This is essentially boiler plate code except for `proxy_pass` which is passed our the public IP of our EC2 instance and the non-standard port.
+* Set up nginx to handle our API/server routes. This is essentially boiler plate code except for `proxy_pass` which is passed the public IP of our EC2 instance and its non-standard port e.g. `http://34.209.87.87:5000`. This IP addess is proxied to the standard port 80 which will allow us to access the website as normal without specifying its port. We declare as many server routes as needed e.g. if we have routes that start with `/auth` as well as routes that begin with `api` then we would need to define a new route for each of them.
+```
+location /route_name/ {
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-NginX-Proxy true;
+                proxy_pass http://public_ipv4_address:port;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+        }`
+```
+* Save and exit the editor
+* Test nginx to see if the configuration is valid. The test should say `syntax is ok` and `test is successful`.
+```
+sudo nginx -t
+```
+* Restart nginx for the changes to take effect
+```
+sudo systemctl restart ngix
+```
+* If something does not work, you can access the nginx error logs
+```
+sudo nano /var/log/nginx/error.log
 ```
 
-```
 
 ## 8. Terminating AWS resources (to avoid costs)
 
