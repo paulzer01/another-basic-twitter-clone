@@ -1,5 +1,6 @@
 # Deploying a PERN app to AWS EC2
 ## Contents
+![AWS](https://user-images.githubusercontent.com/70828466/133891224-5223af27-b485-485b-90ef-cab9d9acb252.png)
 
 [0. Introduction](#introduction)
 
