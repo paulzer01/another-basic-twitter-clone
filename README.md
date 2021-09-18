@@ -1,6 +1,5 @@
 # Deploying a PERN app to AWS EC2
 ## Contents
-![AWS](https://user-images.githubusercontent.com/70828466/133891224-5223af27-b485-485b-90ef-cab9d9acb252.png)
 
 [0. Introduction](#introduction)
 
@@ -40,6 +39,9 @@ We will need to understand what the following are:
 * CIDR block —Classless Inter-Domain Routing. An internet protocol address allocation and route aggregation methodology. For more information, see Classless Inter-Domain Routing in Wikipedia.
 
 _Source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html_
+
+**The diagram below represents the end configuration of the deployment setup**
+![AWS](https://user-images.githubusercontent.com/70828466/133891224-5223af27-b485-485b-90ef-cab9d9acb252.png)
 
 ## 1. Setting up the VPC and Subnets
 
