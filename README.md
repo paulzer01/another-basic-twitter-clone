@@ -269,8 +269,6 @@ psql -d database_name -h db_endpoint -p db_port -U master_username
 
 -----
 
-**4.5 Set up the database schema for your app**
-
 Once inside the new PSQL database, create the necessary databases and tables for your app using standard PSQL commands.
 
 ## 5. Deploying the app to AWS
