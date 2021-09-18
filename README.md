@@ -1,6 +1,6 @@
 # Deploying a PERN app to AWS EC2
 ## Introduction
-This is a guide to setup a PostgreSQL, Express, React, Node full stack web application to an AWS EC2 instance running an Amazon Linux AMI 2. The setup will use PM2 as a cluster manager and NGINX as a reverse proxy. We will use RDS to deply the PSQL database.
+This is a guide to set up a PostgreSQL, Express, React, Node full stack web application to an AWS EC2 instance running an Amazon Linux AMI 2. The setup will use PM2 as a cluster manager and NGINX as a reverse proxy. We will use RDS to deply the PSQL database.
 
 We will need to understand what the following are:
 * Virtual private cloud (VPC) — A virtual network dedicated to your AWS account that you can deploy AWS resources into and have all your resources contained in one virtual place.
@@ -44,9 +44,9 @@ Note that the /16 subnet mask denotes the number of bits that are in use as the 
 
 Create the first subnet as the public subnet. It does not need a preference for its Availability Zone.
 
-The second and third subnets will be private and require Availability Zone preferences that differ from each other. This is because the RDS PostgreSQL database that we will use later requires two subnets to be set up.
+The second and third subnets will be private and require Availability Zone preferences that differ from each other. This is because the RDS PostgreSQL database that we will use later requires two subnets in different availability zones to be deployed.
 
-Subnets are simply sub networks within a wider network, in this case, the VPC. Subnetting is used to divide up the VPC for performance and security reasons To differentiate each subnet, they must have differing IPv4 addresses local to the VPC. We know that the last two octets of the VPC are available to use as host addresses, so the CIRD blocks used for our subnets can be as such: subnet 1 can use 10.11.1.0/24, subnet 2 can use 10.11.2.0/24, and subnet 3 can use 10.11.3.0/24. Since there is one octet unsed by the subnets we just created (notice the .0/24), this means that within each subnet, 256 other local IP addresses can be used (e.g. 10.11.X.0 to 10.11.X.255).
+Subnets are simply sub networks within a wider network, in this case, the VPC. Subnetting is used to divide up the VPC for performance and security reasons To differentiate each subnet, they must have differing IPv4 addresses local to the VPC. We know that the last two octets of the VPC are available to use as host addresses, so the IPv4 CIDR blocks assigned to our subnets can be as such: subnet 1 can use 10.11.1.0/24, subnet 2 can use 10.11.2.0/24, and subnet 3 can use 10.11.3.0/24. Since there is one octet unsed by the subnets we just created (the third octet is used as the unique identifier for each subnet - notice the /24), this means that within each subnet, 256 other local IP addresses can be used (e.g. 10.11.X.0 to 10.11.X.255).
 
 Our web server and database will be able to communicate with each other through a route table.
 
@@ -57,13 +57,19 @@ Our web server and database will be able to communicate with each other through 
 * Give it a name tag that is meaningful
 * Under 'Actions', attach it to your VPC
 
+We will connect this internet gateway to our public subnet (but first we need to set up the route table).
+
 The internet gateway connects the VPC to the internet. It can receive requests from the internet to the VPC, or take requests from the VPC which are then sent into the internet. The internet gateway has its own public IP address which identifies the VPC network as a whole on the internet. The VPC network, (as alluded to in the above sections) can contain within itself thousands of IP addresses.
 
 -----
 
 **1.4 Create Route Tables**
 
-* Create
+* Create 2 route tables both connected to your VPC
+* 1 route table for your public subnet (web server)
+  *
+* 1 route table for your private subnets (database)
+
 
 ## 2. Setting up the production build
 ```javascript
