@@ -234,9 +234,11 @@ The database subnet group spans to availability zones so that if a server fails 
 
 We set Source to 'Custom' and use the CIDR block of the public subnet which contains the web server e.g. 10.11.1.0/24. This ensures that only traffic coming from this local IPv4 address can speak to our database.
 
+-----
+
 **4.3 Create a new PostgreSQL database**
-1. Choose 'Create Database' using 'PostgreSQL' (use the free tier to avoid costs)
-2. Name your DB instance identifier
+* Choose 'Create Database' using 'PostgreSQL' (use the free tier to avoid costs)
+* Name your DB instance identifier
 * Pick your Master username (and set a password if you want)
 * Pick a DB instance class (pick the lowest performance one if you only want to test out how things work to reduce costs)
 * Choose your VPC
@@ -245,7 +247,22 @@ We set Source to 'Custom' and use the CIDR block of the public subnet which cont
 * Leave the Availablity Zone as 'No preference'
 * Choose your newly created Database Security Group
 * Have your database name be the same as the Database instance identifier (for convenience)
+* Uncheck 'Enable automated backups' (so that the new database instance is created more quickly)
 * For the purposes of this exercise, we can leave everything else as default
+* Create the Database
+
+-----
+
+**4.4 Connect to the AWS PSQL Database**
+* Connect to your EC2 instance
+* Install PSQL on the EC2 instance
+```bash
+
+sudo amazon-linux-extras install postgresql13     # or any other version you would like to use
+
+psql --version                                    # check whether it was installed successfully
+psql --help                                       # get all commands for psql
+```
 
 ## 5. Deploying the app to AWS
 
