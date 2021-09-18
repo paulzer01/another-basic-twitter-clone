@@ -2,6 +2,21 @@
 ## Introduction
 This is a guide to setup a PostgreSQL, Express, React, Node full stack web application to an AWS EC2 instance running an Amazon Linux AMI 2. The setup will use PM2 as a cluster manager and NGINX as a reverse proxy. We will use RDS to deply the PSQL database.
 
+We will need to understand what the following are:
+* Virtual private cloud (VPC) — A virtual network dedicated to your AWS account.
+
+* Subnet — A range of IP addresses in your VPC.
+
+* Route table — A set of rules, called routes, that are used to determine where network traffic is directed.
+
+* Internet gateway — A gateway that you attach to your VPC to enable communication between resources in your VPC and the internet.
+
+* VPC endpoint — Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network. For more information, see AWS PrivateLink and VPC endpoints.
+
+* CIDR block —Classless Inter-Domain Routing. An internet protocol address allocation and route aggregation methodology. For more information, see Classless Inter-Domain Routing in Wikipedia.
+
+_Source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html_
+
 ## 1. Setting up the VPC and Subnets
 **1.1. Create a new VPC**
 
