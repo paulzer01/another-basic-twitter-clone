@@ -1,4 +1,4 @@
-# Deploying a PERN app to AWS
+# Deploying a PERN app to an AWS EC2 instance running an Amazon Linux AMI 2.
 
 ## 1. Setting up VPC and Subnets
 **1.1. Create a new VPC**
