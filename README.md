@@ -257,6 +257,7 @@ For the purposes of this exercise, we leave the storage as default and do not ne
 * **Important:** Make sure to keep the key pair safe, as it cannot be downloaded again. It is needed to access the EC2 instance from our local computer.
 
 The EC2 instance will take a short while before it starts running after it has been launched.
+
 -----
 
 **3.2 Accessing the EC2 instance from our local computer**
