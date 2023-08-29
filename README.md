@@ -1,4 +1,4 @@
-# Deploying a PERN app to AWS EC2
+# Deploying a PERN twitter clone app to AWS EC2
 ## Contents
 
 [0. Introduction](#introduction)
